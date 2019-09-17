@@ -1,6 +1,58 @@
 
 $(document).ready(function(){
 
+  ////loads all request immediately jquery is ready
+     $.ajax({
+          type: "GET",
+          url: 'http://localhost:3000/leave_requests', // Using our resources.json file to serve results
+          success: function(result) {
+           //console.log(result);
+           let status = 'default';
+           //let staffFullName = 'not found';
+           let output =
+          "<table id='example' class='table table-striped'><thead><tr><th>Staff Email</th><th>Approval Status</th></tr></thead><tbody>";
+        for (let i in result) {
+            if(result[i].approval_status ===1){
+                 status = "<small class='badge badge-sm badge-success'>Approved</small>";
+            }
+
+            if(result[i].approval_status ===0){
+                 status = "<small class='badge badge-sm badge-info'>Pending</small>";
+            }
+
+            if(result[i].approval_status ===2){
+                 status = "<small class='badge badge-sm badge-danger'>Disapproved</small>";
+            }
+
+            //get the name and other info of the staff
+            // $.ajax({
+            //   type: "GET",
+            //   url: `http://localhost:3000/staffers?email=${result[i].staffemail}`, // Using our resources.json file to serve results
+            //   success: function(staffResult) {
+                  
+            //               if(result[i].staffemail == staffResult.email){
+            //                    staffFullName = staffResult[j].firstname ;
+            //               } else{
+            //                    staffFullName = "sdfsdf";
+            //               }
+            //         }
+               
+            //  });
+
+          output +=
+            "<tr><td>" +
+            result[i].staffemail +
+            "</td><td>"+ status  +
+            "</td></tr>";
+         
+          }
+
+         output += "</tbody></table>";
+         $('#view_requests_table').html(output);
+       }
+
+        });
+
 
 	/////admin login function
   $('#adminLoginBtn').click(function(event) {
@@ -150,16 +202,6 @@ $(document).ready(function(){
 
 
 
-//view all staff
-  $('#view_all_staff').click(function(){
-    //$('#register').text('please wait...');
-      //alert('test');
-      
-     
-      
-
-  });
-
 
 //view staffers
   $('#view_all_staff').click(function(event) {
@@ -191,11 +233,76 @@ $(document).ready(function(){
           }
 
          output += "</tbody></table>";
-         $('#test').append(output);
+         $('#view_staff_table').html(output);
        }
 
         });
      
+
+      });
+
+
+
+
+//view leave requests
+  $('#view_all_requests').click(function(event) {
+    event.preventDefault();
+     $('#view_all_requests_div').fadeIn();
+     $('#view_staff_div').hide();
+     $('#admin_register_div').hide();
+     $('#view_staff_div').hide();
+
+    
+      $.ajax({
+          type: "GET",
+          url: 'http://localhost:3000/leave_requests', // Using our resources.json file to serve results
+          success: function(result) {
+           //console.log(result);
+           let status = 'default';
+           //let staffFullName = 'not found';
+           let output =
+          "<table id='example' class='table table-striped'><thead><tr><th>Staff Email</th><th>Approval Status</th></tr></thead><tbody>";
+        for (let i in result) {
+            if(result[i].approval_status ===1){
+                 status = "<small class='badge badge-sm badge-success'>Approved</small>";
+            }
+
+            if(result[i].approval_status ===0){
+                 status = "<small class='badge badge-sm badge-info'>Pending</small>";
+            }
+
+            if(result[i].approval_status ===2){
+                 status = "<small class='badge badge-sm badge-danger'>Disapproved</small>";
+            }
+
+            //get the name and other info of the staff
+            // $.ajax({
+            //   type: "GET",
+            //   url: `http://localhost:3000/staffers?email=${result[i].staffemail}`, // Using our resources.json file to serve results
+            //   success: function(staffResult) {
+                  
+            //               if(result[i].staffemail == staffResult.email){
+            //                    staffFullName = staffResult[j].firstname ;
+            //               } else{
+            //                    staffFullName = "sdfsdf";
+            //               }
+            //         }
+               
+            //  });
+
+          output +=
+            "<tr><td>" +
+            result[i].staffemail +
+            "</td><td>"+ status  +
+            "</td></tr>";
+         
+          }
+
+         output += "</tbody></table>";
+         $('#view_requests_table').html(output);
+       }
+
+        });
 
       });
 

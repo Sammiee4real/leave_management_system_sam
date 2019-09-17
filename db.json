@@ -63,6 +63,22 @@
       "phoneno": "08033887766",
       "password": "samdal123",
       "id": 8
+    },
+    {
+      "firstname": "Angel ",
+      "lastname": "Bamidele",
+      "email": "agrifo@yahoo.com",
+      "phoneno": "08033882200",
+      "password": "agrifo1234",
+      "id": 9
+    },
+    {
+      "firstname": "sdfsgsg",
+      "lastname": "sgsgg",
+      "email": "admisdfsn@gmail.com",
+      "phoneno": "0797970",
+      "password": "sdfjhslfl",
+      "id": 10
     }
   ],
   "admin": [
@@ -83,6 +99,10 @@
     {
       "staffemail": "idris@gmail.com",
       "approval_status": 1
+    },
+     {
+      "staffemail": "agrifo@yahoo.com",
+      "approval_status": 2
     }
   ]
 }
