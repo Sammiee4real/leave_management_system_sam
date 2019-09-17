@@ -1,5 +1,45 @@
 
 $(document).ready(function(){
+
+
+	/////admin login function
+  $('#adminLoginBtn').click(function(event) {
+    event.preventDefault();
+    const adminLoginPassword = $('#adminLoginPassword').val();
+    const adminLoginEmail = $('#adminLoginEmail').val();
+    if (!adminLoginPassword || !adminLoginEmail) {
+      $('#notification').html('<span style="badge badge-danger">Ensure all fields are properly filled. Thank you.</span>');
+      return;
+    }
+    //Check if the user is in the database
+    $.ajax({
+      method: 'GET',
+      url: `http://localhost:3000/admin?email=${emailLogin}&password=${passwordLogin}`,
+      data: {
+        adminLoginEmail,
+        adminLoginPassword,
+      },
+      beforeSend: function() {
+        $('#adminLoginBtn').html('Please wait....');
+      },
+      success: function(response) {
+        if (response.length) {
+          $('#notification').html('<span style="badge badge-success">You are succesfully logged in</span>');
+  		  $('#verifyLogin').html('You are logged in');
+          localStorage.setItem('adminEmail', adminLoginEmail);
+          //redirect to home page if the login is successfull
+          window.location.assign('index.html');
+        } else {
+          $('#notification').html('Username or password Incorrect');
+        }
+      },
+    });
+  });
+
+
+
+
+
 	$('#login_admin').click(function(){
 		//$('#login').text('please wait...');
 	    //alert('test');
@@ -41,7 +81,11 @@ $(document).ready(function(){
 	});
 
 
-		  $('#example').DataTable();
+    $('#example').DataTable();
+
+
+
+
 
 
 });
