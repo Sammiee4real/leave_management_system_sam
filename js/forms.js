@@ -8,20 +8,25 @@ $(document).ready(function(){
           success: function(result) {
            //console.log(result);
            let status = 'default';
+           let action= 'null';
            //let staffFullName = 'not found';
            let output =
-          "<table id='example' class='table table-striped'><thead><tr><th>Staff Email</th><th>Approval Status</th></tr></thead><tbody>";
+          "<table id='example' class='table table-striped'><thead><tr><th>Staff Email</th><th>Approval Status</th><th></th></tr></thead><tbody>";
         for (let i in result) {
             if(result[i].approval_status ===1){
                  status = "<small class='badge badge-sm badge-success'>Approved</small>";
+                 action = " ";
+              
             }
 
-            if(result[i].approval_status ===0){
+            if(result[i].approval_status === 0){
                  status = "<small class='badge badge-sm badge-info'>Pending</small>";
+                 action = "<a class = 'btn btn-sm btn-info viewRecord' id='"+result[i].email+"' href='tsdf'>approve</a>";
             }
 
             if(result[i].approval_status ===2){
                  status = "<small class='badge badge-sm badge-danger'>Disapproved</small>";
+                 action = "";
             }
 
             //get the name and other info of the staff
@@ -43,7 +48,7 @@ $(document).ready(function(){
             "<tr><td>" +
             result[i].staffemail +
             "</td><td>"+ status  +
-            "</td></tr>";
+            "</td><td>&nbsp;&nbsp;"+action+"</td></tr>";
          
           }
 
@@ -52,6 +57,32 @@ $(document).ready(function(){
        }
 
         });
+
+
+
+
+     //gets the user's detaills immediatelt jquery loads
+      let  email = window.localStorage.getItem('staffLoginEmail');
+     let  staffFirstName = window.localStorage.getItem('staffFirstName');
+     let  staffLastName = window.localStorage.getItem('staffLastName');
+     let  staffPhoneno = window.localStorage.getItem('staffPhoneno');
+
+     $('#staff_info').html('<strong>Welcome '+ staffFirstName+' '+staffLastName+' ( '+staffPhoneno+' )');
+
+
+
+     let  ademail = window.localStorage.getItem('adminLoginEmail');
+     let  adfirstname = window.localStorage.getItem('adminFirstName');
+     let  adlastname = window.localStorage.getItem('adminLastName');
+     let  adphoneno = window.localStorage.getItem('adminPhoneno');
+
+    $('#admin_info').html('<strong>Welcome '+ adfirstname+' '+adlastname+' ( '+adphoneno+' )');
+
+
+
+      
+
+
 
 
 	/////admin login function
@@ -77,13 +108,20 @@ $(document).ready(function(){
       },
       beforeSend: function() {
        $('#adminLoginBtn').html('Loading...');
+       $('#adminLoginBtn').html('Login');
 
        },
       success: function(response) {
         if (response.length) {
           $('#notification').html('<span class="badge badge-success">Login was Successful</span>');
+           let adfirstname = response[0].firstname;
+          let adlastname = response[0].lastname;
+          let adphoneno = response[0].phoneno;
   		  $('#verifyLogin').html('You are logged in');
           localStorage.setItem('adminLoginEmail', adminLoginEmail);
+          localStorage.setItem('adminFirstName', adfirstname);
+          localStorage.setItem('adminLastName', adlastname);
+          localStorage.setItem('adminPhoneno', adphoneno);
            $('#adminLoginBtn').html('Login');
 
       
@@ -105,13 +143,85 @@ $(document).ready(function(){
 
 
 
-   //Logout Function
+
+    /////staff login function
+  $('#staffLoginBtn').click(function(event) {
+    event.preventDefault();
+   const staffLoginPassword = $('#staffLoginPassword').val();
+    const staffLoginEmail = $('#staffLoginEmail').val();
+   // alert(adminLoginPassword);
+
+
+    if (!staffLoginPassword || !staffLoginEmail) {
+      $('#staff_notification').html('<span class="badge badge-danger">Ensure all fields are properly filled. Thank you.</span>');
+      //return;
+    }
+    else{
+    //Check if the user is in the database
+    $.ajax({
+      method: 'GET',
+      url: `http://localhost:3000/staffers?email=${staffLoginEmail}&password=${staffLoginPassword}`,
+      data: {
+        staffLoginEmail:staffLoginEmail,
+        staffLoginPassword:staffLoginPassword
+      },
+      beforeSend: function() {
+       $('#staffLoginBtn').html('Loading...');
+
+       },
+      success: function(response) {
+        if (response.length) { //login was successfull
+          $('#staff_notification').html('<span class="badge badge-success">Login was Successful</span>');
+          let firstname = response[0].firstname;
+          let lastname = response[0].lastname;
+          let phoneno = response[0].phoneno;
+
+
+        $('#verifyLogin').html('You are logged in');
+          localStorage.setItem('staffLoginEmail', staffLoginEmail);
+          localStorage.setItem('staffFirstName', firstname);
+          localStorage.setItem('staffLastName', lastname);
+          localStorage.setItem('staffPhoneno', phoneno);
+           $('#staffLoginBtn').html('Login');
+
+      
+          //redirect to home page if the login is successfull
+         window.location.assign('staffHome.html');
+
+        } else {
+          //
+          $('#staff_notification').html('<span class="badge badge-danger"></span>');
+           $('#staffLoginBtn').html('Login');
+        }
+      }
+  
+   });
+
+   }
+
+
+  });
+
+
+
+   //Logout Function for Admin
   $('#adminLogoutBtn').click(function() {
     //clear the localstorage and redirect to signup page
     localStorage.clear();
     //$('.checkLogin').html('Kindly login');
     window.location.assign('adminLogin.html');
     $('#notification').html('<span class="badge badge-success">You are now logged out.</span>');
+  });
+
+
+
+  //Logout Function for Staff
+  $('#staffLogoutBtn').click(function() {
+    //clear the localstorage and redirect to signup page
+    localStorage.clear();
+    //$('.checkLogin').html('Kindly login');
+    window.location.assign('staffLogin.html');
+    $('#staff_notification').html('<span class="badge badge-success">You are now logged out.</span>');
   });
 
 
@@ -203,6 +313,26 @@ $(document).ready(function(){
 
 
 
+  //send a leave requests
+  $('#leaveRequestBtn').click(function(event) {
+    event.preventDefault();
+    const end_date = $('#end_date').val();
+    const start_date = $('#start_date').val();
+     const leave_purpose = $('#leave_purpose').val();
+     let  email = window.localStorage.getItem('staffLoginEmail');
+     let  staffFirstName = window.localStorage.getItem('staffFirstName');
+     let  staffLastName = window.localStorage.getItem('staffLastName');
+     let  staffPhoneno = window.localStorage.getItem('staffPhoneno');
+
+
+    
+      alert(staffPhoneno);  
+        
+
+  });
+
+
+
 //view staffers
   $('#view_all_staff').click(function(event) {
     event.preventDefault();
@@ -253,26 +383,31 @@ $(document).ready(function(){
      $('#view_staff_div').hide();
 
     
-      $.ajax({
+         $.ajax({
           type: "GET",
           url: 'http://localhost:3000/leave_requests', // Using our resources.json file to serve results
           success: function(result) {
            //console.log(result);
            let status = 'default';
+           let action= 'null';
            //let staffFullName = 'not found';
            let output =
-          "<table id='example' class='table table-striped'><thead><tr><th>Staff Email</th><th>Approval Status</th></tr></thead><tbody>";
+          "<table id='example' class='table table-striped'><thead><tr><th>Staff Email</th><th>Approval Status</th><th></th></tr></thead><tbody>";
         for (let i in result) {
             if(result[i].approval_status ===1){
                  status = "<small class='badge badge-sm badge-success'>Approved</small>";
+                 action = " ";
+              
             }
 
-            if(result[i].approval_status ===0){
+            if(result[i].approval_status === 0){
                  status = "<small class='badge badge-sm badge-info'>Pending</small>";
+                 action = "<a class = 'btn btn-sm btn-info viewRecord' id='"+result[i].email+"' href='tsdf'>approve</a>";
             }
 
             if(result[i].approval_status ===2){
                  status = "<small class='badge badge-sm badge-danger'>Disapproved</small>";
+                 action = "";
             }
 
             //get the name and other info of the staff
@@ -294,7 +429,7 @@ $(document).ready(function(){
             "<tr><td>" +
             result[i].staffemail +
             "</td><td>"+ status  +
-            "</td></tr>";
+            "</td><td>&nbsp;&nbsp;"+action+"</td></tr>";
          
           }
 

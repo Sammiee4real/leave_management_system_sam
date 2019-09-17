@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leave Management System</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/datatables.css">
+
+		
+
+
+</head>
+<body>
+			
+				<nav class="navbar navbar-expand-lg navbar-light  bg-primary">
+					<div class="container">
+						<a class="navbar-brand text-white" style="font-size: 25px;" href="#"><strong>Decagon Leave Management System</strong></a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+						</button>
+
+						<div class="collapse navbar-collapse " id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto text-white">
+						&nbsp;&nbsp;
+						<li class="nav-item active">
+						<a class="nav-link text-white" href="index.html">Main Page <span class="sr-only">(current)</span> |</a>
+						</li>
+					
+						
+						<!-- below will show if leave has been requested -->
+						 <li class="nav-item">
+						<a class="nav-link text-white view_all_requests" id="view_all_requests" href="#">Check Leave Status |</a>
+						</li> 
+				
+
+						
+
+
+							<!-- to differentiate admin from user, just add a privilege level status -->
+						<li class="nav-item">
+						<a class="btn btn-sm btn-danger admin_logout" id="adminLogoutBtn" href="#">Logout</a>
+						</li>
+					
+						</ul>
+					
+						</div>
+					</div>
+				</nav>
+
+				<main>
+				
+
+				
+
+
+					 <div id="leave_request_div">
+					  	
+								<br>
+
+								<div align="center"><div id="staff_info"></div>&nbsp;&nbsp;<!-- <div id="nameofuser"></div> --><small class="badge badge-sm badge-primary">You are logged in as a Staff</small></div>
+
+								<h4 align="center">Create a Leave Request</h4>
+								<hr>
+								<div class="row">
+								<div class="col-lg-4 col-md-12 col-sm-12"></div>
+								<div class="col-lg-4 col-md-12 col-sm-12">
+									<div align="center" id="staff_notification"></div>
+									<br>
+								<form>
+								<div class="form-group">
+								<label>Leave Start Date</label>
+								<input type="date" name="start_date" id="start_date" class="form-control" placeholder="Leave Start Date">
+								</div>
+
+								<div class="form-group">
+									<label>Leave End Date</label>
+									<input type="date" name="end_date" id="end_date" class="form-control" placeholder="Leave End Date">
+								</div>
+
+								
+								<div class="form-group">
+
+								<label>Purpose of Leave</label>
+									<input type="text" name="leave_purpose" id="leave_purpose" class="form-control" placeholder="Purpose of Leave">
+								</div>
+
+
+								
+
+								</div>
+								<div class="col-lg-4 col-md-12 col-sm-12"></div>
+								</div>
+
+								<div class="row">
+								<div class="col-lg-4 col-md-12 col-sm-12"></div>
+								<div class="col-lg-4 col-md-12 col-sm-12"><button id="leaveRequestBtn" class="btn btn-md btn-primary btn-block">Send Leave Request</button></div>
+								<div class="col-lg-4 col-md-12 col-sm-12"></div>
+								</div>
+
+								</form>
+
+					  </div>
+ 
+
+
+					
+
+
+
+
+
+
+				</main>
+
+<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+		<!-- Popper JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="js/forms.js" type="text/javascript"></script>
+      <!--   <script src="js/verify_admin_login.js" type="text/javascript"></script>
+         -->
+        
+
+        
+</body>
+
+</html>
