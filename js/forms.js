@@ -53,6 +53,18 @@ $(document).ready(function(){
 
 
 
+   //Logout Function
+  $('#adminLogoutBtn').click(function() {
+    //clear the localstorage and redirect to signup page
+    localStorage.clear();
+    $('.checkLogin').html('Kindly login');
+    window.location.assign('adminLogin.html');
+    $('#notification').html('<span class="badge badge-success">You are now logged out.</span>');
+  });
+
+
+
+
 
 
 	$('#login_admin').click(function(){
