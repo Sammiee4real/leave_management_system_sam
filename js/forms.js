@@ -57,13 +57,33 @@ $(document).ready(function(){
   $('#adminLogoutBtn').click(function() {
     //clear the localstorage and redirect to signup page
     localStorage.clear();
-    $('.checkLogin').html('Kindly login');
+    //$('.checkLogin').html('Kindly login');
     window.location.assign('adminLogin.html');
     $('#notification').html('<span class="badge badge-success">You are now logged out.</span>');
   });
 
 
 
+//display form registering  a staff
+  $('#register_staff').click(function(){
+    //$('#register').text('please wait...');
+      //alert('test');
+      $('#admin_register_div').fadeIn();
+      $('#view_all_requests_div').slideDown();
+
+  });
+
+
+
+//view all requests
+  $('#view_all_requests').click(function(){
+    //$('#register').text('please wait...');
+      //alert('test');
+      $('#view_all_requests_div').fadeIn();
+      $('#admin_register_div').hide();
+      
+
+  });
 
 
 
@@ -84,14 +104,7 @@ $(document).ready(function(){
 	     $('#view_all_requests_div').hide();
 	});
 
-		$('#view_all_requests').click(function(){
-		//$('#register').text('please wait...');
-	    //alert('test');
-	    $('#view_all_requests_div').fadeIn();
-	    $('#login_div').hide();
-	    $('#register_div').hide();
-
-	});
+	
 
 
 		$('#register').click(function(){
