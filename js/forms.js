@@ -5,35 +5,48 @@ $(document).ready(function(){
 	/////admin login function
   $('#adminLoginBtn').click(function(event) {
     event.preventDefault();
-    const adminLoginPassword = $('#adminLoginPassword').val();
+   const adminLoginPassword = $('#adminLoginPassword').val();
     const adminLoginEmail = $('#adminLoginEmail').val();
+   // alert(adminLoginPassword);
+
+
     if (!adminLoginPassword || !adminLoginEmail) {
-      $('#notification').html('<span style="badge badge-danger">Ensure all fields are properly filled. Thank you.</span>');
-      return;
+      $('#notification').html('<span class="badge badge-danger">Ensure all fields are properly filled. Thank you.</span>');
+      //return;
     }
+    else{
     //Check if the user is in the database
     $.ajax({
       method: 'GET',
-      url: `http://localhost:3000/admin?email=${emailLogin}&password=${passwordLogin}`,
+      url: `http://localhost:3000/admin?email=${adminLoginEmail}&password=${adminLoginPassword}`,
       data: {
-        adminLoginEmail,
-        adminLoginPassword,
+        adminLoginEmail:adminLoginEmail,
+        adminLoginPassword:adminLoginPassword
       },
       beforeSend: function() {
-        $('#adminLoginBtn').html('Please wait....');
-      },
+       $('#adminLoginBtn').html('Please wait....');
+
+       },
       success: function(response) {
         if (response.length) {
-          $('#notification').html('<span style="badge badge-success">You are succesfully logged in</span>');
+          $('#notification').html('<span class="badge badge-success">Login was Successful</span>');
   		  $('#verifyLogin').html('You are logged in');
-          localStorage.setItem('adminEmail', adminLoginEmail);
+          localStorage.setItem('adminLoginEmail', adminLoginEmail);
+           $('#adminLoginBtn').html('Login');
           //redirect to home page if the login is successfull
-          window.location.assign('index.html');
+          //window.location.assign('index.html');
+
         } else {
-          $('#notification').html('Username or password Incorrect');
+          $('#notification').html('<span class="badge badge-danger">Username or Password Incorrect.</span>');
+           $('#adminLoginBtn').html('Login');
         }
-      },
-    });
+      }
+  
+   });
+
+   }
+
+
   });
 
 
@@ -81,7 +94,7 @@ $(document).ready(function(){
 	});
 
 
-    $('#example').DataTable();
+    //$('#example').DataTable();
 
 
 

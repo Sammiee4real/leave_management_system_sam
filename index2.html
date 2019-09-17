@@ -22,33 +22,32 @@
 
 						<div class="collapse navbar-collapse " id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto text-white">
-						&nbsp;&nbsp;
 						<li class="nav-item active">
-						<a class="nav-link text-white" href="index.html">Main Page <span class="sr-only">(current)</span> |</a>
+						<a class="nav-link text-white" href="#">Home <span class="sr-only">(current)</span> |</a>
 						</li>
-						<!-- <li class="nav-item">
+						<li class="nav-item">
 						<a class="nav-link text-white" id="register_staff" href="#">Register A Staff |</a>
-						</li> -->
+						</li>
 
-						<!-- <li class="nav-item">
+						<li class="nav-item">
 						<a class="nav-link text-white" id="login_admin" href="#">Login |</a>
 						</li>
 						
 
 						<li class="nav-item">
 						<a class="nav-link text-white" id="view_all_requests" href="#">View All Leave Requests |</a>
-						</li> -->
+						</li>
 
 						<!-- <li class="nav-item">
 						<a class="nav-link text-white" id="view_all_requests" href="#">Create Leave Request |</a>
 						</li> -->
 						<!-- to differentiate admin from user, just add a privilege level status -->
-						<!-- <li class="nav-item">
+
+
+
+						<li class="nav-item">
 						<a class="btn btn-sm btn-danger" id="register_staff" href="#">Logout</a>
-						</li> -->
-
-
-						
+						</li>
 
 						<!-- <li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -76,22 +75,17 @@
 				<main>
 				 <div id="login_div">
 					<br>
-					<div id="verifyLogin"></div>
-					
-					<h4 align="center">Admin Login</h4>
+					<h4 align="center">Please Login</h4>
 					<hr>
 					  <div class="row">
 					  			<div class="col-lg-4 col-md-12 col-sm-12"></div>
 					  			<div class="col-lg-4 col-md-12 col-sm-12">
-					  				  <div align="center" id="notification"></div>
-					  				  <br>
 										<div class="form-group">
-
-										   <input type="text" name="adminLoginEmail" id="adminLoginEmail" class="form-control" placeholder="admin email" >
+										   <input type="text" name="username" id="username" class="form-control" placeholder="username" id="usr">
 										</div>
 										<div class="form-group">
 									
-										<input type="password" id="adminLoginPassword" name="adminLoginPassword" placeholder="admin password" class="form-control" >
+										<input type="password" id="password" name="password" placeholder="password" class="form-control" id="pwd">
 										</div>
 								</div>
 					  			<div class="col-lg-4 col-md-12 col-sm-12"></div>
@@ -99,7 +93,7 @@
 					  
 					  <div class="row">
 					  			<div class="col-lg-4 col-md-12 col-sm-12"></div>
-					  			<div class="col-lg-4 col-md-12 col-sm-12"><button id="adminLoginBtn" class="btn btn-md btn-success btn-block">Login</button></div>
+					  			<div class="col-lg-4 col-md-12 col-sm-12"><button id="login" class="btn btn-md btn-success btn-block">Login</button></div>
 					  			<div class="col-lg-4 col-md-12 col-sm-12"></div>
 					  </div>
 					 					 
@@ -229,8 +223,7 @@
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="js/forms.js" type="text/javascript"></script>
-       <!--  <script src="js/verify_admin_login.js" type="text/javascript"></script>
-        -->
+       
         
 
         
