@@ -33,8 +33,10 @@ $(document).ready(function(){
   		  $('#verifyLogin').html('You are logged in');
           localStorage.setItem('adminLoginEmail', adminLoginEmail);
            $('#adminLoginBtn').html('Login');
-          //redirect to home page if the login is successfull
-          //window.location.assign('index.html');
+
+      
+        	//redirect to home page if the login is successfull
+          window.location.assign('adminHome.html');
 
         } else {
           $('#notification').html('<span class="badge badge-danger">Username or Password Incorrect.</span>');
