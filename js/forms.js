@@ -24,7 +24,7 @@ $(document).ready(function(){
         adminLoginPassword:adminLoginPassword
       },
       beforeSend: function() {
-       $('#adminLoginBtn').html('Please wait....');
+       $('#adminLoginBtn').html('Loading...');
 
        },
       success: function(response) {
@@ -69,7 +69,7 @@ $(document).ready(function(){
     //$('#register').text('please wait...');
       //alert('test');
       $('#admin_register_div').fadeIn();
-      $('#view_all_requests_div').slideDown();
+      $('#view_all_requests_div').hide();
 
   });
 
@@ -82,6 +82,64 @@ $(document).ready(function(){
       $('#view_all_requests_div').fadeIn();
       $('#admin_register_div').hide();
       
+
+  });
+
+
+
+//register a staff
+  $('#registerStaffBtn').click(function(event) {
+    event.preventDefault();
+    const firstname = $('#firstname').val();
+    const lastname = $('#lastname').val();
+    const email = $('#email').val();
+    const phoneno = $('#phoneno').val();
+    const password = $('#password').val();
+    //Check if user input is empty
+    if (!firstname || !lastname || !phoneno || !password || !email) {
+      $('#notification').html('<span class="badge badge-danger">Ensure all fields are properly filled. Thank you. </span>');
+      return;
+    }
+     else{
+    //Make get request to check if the user already exist
+    $.ajax({
+      method: 'GET',
+      url: `http://localhost:3000/staffers?email=${email}`,
+      data: {
+        email,
+      },
+      beforeSend: function() {
+      $('#registerStaffBtn').html('Loading...');
+      },
+      success: function(response) {
+        if (response.length) {
+            $('#notification').html('<span class="badge badge-danger">User Already Exists.</span>');
+            $('#registerStaffBtn').html('Register Now');
+        } else {
+          //Submit the user data if the user does not exist
+          $.ajax({
+            method: 'POST',
+            url: 'http://localhost:3000/staffers',
+            data: {
+              firstname,
+              lastname,
+              email,
+              phoneno,
+              password
+            },
+            beforeSend: function() {
+              $('#registerStaffBtn').html('Loading...');
+            },
+            success: function() {
+              $('#notification').html('<span class="badge badge-success">Staff was successfully created.</span>');
+               $('#registerStaffBtn').html('Register Now');
+            },
+          });
+        }
+      },
+    });
+
+}
 
   });
 

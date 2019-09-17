@@ -1,68 +1,80 @@
 {
   "staffers": [
-  	{
-  		"id": 1,
-  		"firstname":"Samuel",
-  		"lastname":"Adebunmi",
-  		"email":"adebsholey4real@gmail.com",
-  		"phoneno":"08168509044",
-  		"password":"s123456"
-  	},
-  	{
-  		"id": 2,
-  		"firstname":"Kola",
-  		"lastname":"David",
-  		"email":"koli@gmail.com",
-  		"phoneno":"08168508033",
-  		"password":"k123456"
-  	},
-  	{
-  		"id": 3,
-  		"firstname":"Emeka",
-  		"lastname":"Ike",
-  		"email":"ike@gmail.com",
-  		"phoneno":"08168502033",
-  		"password":"e123456"
-  	},
-  	{
-  		"id": 4,
-  		"firstname":"Abdul",
-  		"lastname":"Idris",
-  		"email":"idris@gmail.com",
-  		"phoneno":"08185092344",
-  		"password":"a123456"
-
-  	}
-  	
-
+    {
+      "id": 1,
+      "firstname": "Samuel",
+      "lastname": "Adebunmi",
+      "email": "adebsholey4real@gmail.com",
+      "phoneno": "08168509044",
+      "password": "s123456"
+    },
+    {
+      "id": 2,
+      "firstname": "Kola",
+      "lastname": "David",
+      "email": "koli@gmail.com",
+      "phoneno": "08168508033",
+      "password": "k123456"
+    },
+    {
+      "id": 3,
+      "firstname": "Emeka",
+      "lastname": "Ike",
+      "email": "ike@gmail.com",
+      "phoneno": "08168502033",
+      "password": "e123456"
+    },
+    {
+      "id": 4,
+      "firstname": "Abdul",
+      "lastname": "Idris",
+      "email": "idris@gmail.com",
+      "phoneno": "08185092344",
+      "password": "a123456"
+    },
+    {
+      "firstname": "Olugbenga",
+      "lastname": "Oteju",
+      "email": "admin@gmail.com",
+      "phoneno": "8033533237",
+      "password": "admin123",
+      "id": 5
+    },
+    {
+      "firstname": "Banda",
+      "lastname": "Johnson",
+      "email": "banda@gmail.com",
+      "phoneno": "09033889900",
+      "password": "banda1234",
+      "id": 6
+    },
+    {
+      "firstname": "James",
+      "lastname": "Adelakun",
+      "email": "james@gmail.com",
+      "phoneno": "09023892377",
+      "password": "james1234",
+      "id": 7
+    }
   ],
-
   "admin": [
-  	{
-  		"id": 1,
-  		"firstname":"Super",
-  		"lastname":"Admin",
-  		"email":"admin@gmail.com",
-  		"phoneno":"08111111111",
-  		"password":"admin123"
-  	}
-
+    {
+      "id": 1,
+      "firstname": "Super",
+      "lastname": "Admin",
+      "email": "admin@gmail.com",
+      "phoneno": "08111111111",
+      "password": "admin123"
+    }
   ],
-
   "leave_requests": [
-
-  	{
-  		"staffemail":"koli@gmail.com",
-  		"approval_status": 0
-
-  	},
-
-  	{
-  		"staffemail":"idris@gmail.com",
-  		"approval_status": 1
-
-  	}
-
-
+    {
+      "staffemail": "koli@gmail.com",
+      "approval_status": 0
+    },
+    {
+      "staffemail": "idris@gmail.com",
+      "approval_status": 1
+    }
   ]
 }
