@@ -26,45 +26,34 @@
 						<li class="nav-item active">
 						<a class="nav-link text-white" href="index.html">Main Page <span class="sr-only">(current)</span> |</a>
 						</li>
-						<li class="nav-item">
+						<!-- <li class="nav-item">
 						<a class="nav-link text-white register_staff" id="register_staff" href="#">Register a Staff |</a>
-						</li> 
+						</li>  -->
 
 						 <li class="nav-item">
 						<a class="nav-link text-white view_all_requests" id="view_all_requests" href="#">View Leave Requests |</a>
 						</li> 
-						
-						<!-- to differentiate admin from user, just add a privilege level status -->
+				
+
+						<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Staff Operations
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item text-dark" id="register_staff" href="#">Create Staff</a>
+						<a class="dropdown-item text-dark" id="view_all_staff" href="#">View All Staff</a>
+						</div>
+						<!-- <div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Something else here</a>
+						</div> -->
+						</li> 
+
+
+							<!-- to differentiate admin from user, just add a privilege level status -->
 						<li class="nav-item">
 						<a class="btn btn-sm btn-danger admin_logout" id="adminLogoutBtn" href="#">Logout</a>
 						</li>
-
-
-						<!-- <li class="nav-item">
-						<a class="nav-link text-white" id="login_admin" href="#">Login |</a>
-						</li>
 						
-
-						<li class="nav-item">
-						<a class="nav-link text-white" id="view_all_requests" href="#">View All Leave Requests |</a>
-						</li> -->
-
-						 
-
-
-						
-
-						<!-- <li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Dropdown
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Something else here</a>
-						</div>
-						</li> -->
 						<!-- <li class="nav-item">
 						<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Login</a>
 						</li> -->
@@ -140,12 +129,12 @@
 								<br>
 								
 								<div align="center"><strong>Welcome:&nbsp;&nbsp;</strong> <!-- <div id="nameofuser"></div> --><small class="badge badge-sm badge-info">You are logged in as Admin</small></div>
-								<hr>
+								
 								 <h4 align="center">View All Leave Requests</h4>
 								<div class="row">
 								<div class="col-lg-1 col-md-12 col-sm-12"></div>
 								<div class="col-lg-10 col-md-12 col-sm-12">
-										<table id="example" class="table table-striped">
+										<table id="example" class="table table-striped" >
 										<thead>
 										<tr>
 										<th scope="col">#</th>
@@ -153,8 +142,7 @@
 										<th scope="col">Last Name</th>
 										<th scope="col">Email</th>
 										<th scope="col">Phone</th>
-										<th scope="col">Start Date</th>
-									    <th scope="col">End Date</th>	
+											
 										<th scope="col">Action</th>
 										</tr>
 										</thead>
@@ -166,29 +154,9 @@
 										<td>@mdo</td>
 										<td>Mark</td>
 										<td>Otto</td>
-										<td>@mdo</td>
-										<td>@tttkk</td>
+									
 										</tr>
-										<tr>
-										<th scope="row">2</th>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>@fat</td>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>@fat</td>
-										<td>Jacob</td>
-										</tr>
-										<tr>
-										<th scope="row">3</th>
-										<td>Larry</td>
-										<td>the Bird</td>
-										<td>@twitter</td>
-										<td>Larry</td>
-										<td>the Bird</td>
-										<td>@twitter</td>
-										<td>@twitter</td>
-										</tr>
+									
 										</tbody>
 										</table>
 
@@ -199,6 +167,29 @@
 						
 
 					  </div>
+
+
+
+					  	  <div id="view_staff_div">
+					  			
+								<br>
+								
+								
+								<hr>
+								 <h4 align="center">View All Staffers</h4>
+								<div class="row">
+								<div class="col-lg-1 col-md-12 col-sm-12"></div>
+								<div class="col-lg-10 col-md-12 col-sm-12" id="test">
+										
+
+								</div>
+								<div class="col-lg-1 col-md-12 col-sm-12"></div>
+								</div>
+
+						
+
+					  </div>
+
 
 
 				</main>

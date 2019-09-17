@@ -55,6 +55,14 @@
       "phoneno": "09023892377",
       "password": "james1234",
       "id": 7
+    },
+    {
+      "firstname": "Samdal",
+      "lastname": "matosha",
+      "email": "samdal@gmail.com",
+      "phoneno": "08033887766",
+      "password": "samdal123",
+      "id": 8
     }
   ],
   "admin": [
