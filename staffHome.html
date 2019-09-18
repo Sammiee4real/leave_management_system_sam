@@ -30,7 +30,7 @@
 						
 						<!-- below will show if leave has been requested -->
 						 <li class="nav-item">
-						<a class="nav-link text-white view_all_requests" id="view_all_requests" href="#">Check Leave Status |</a>
+						<a class="nav-link text-white view_all_requests" id="view_all_requests" href="#">Check Leave Status |</a> 
 						</li> 
 				
 
@@ -39,7 +39,7 @@
 
 							<!-- to differentiate admin from user, just add a privilege level status -->
 						<li class="nav-item">
-						<a class="btn btn-sm btn-danger admin_logout" id="adminLogoutBtn" href="#">Logout</a>
+						<a class="btn btn-sm btn-danger admin_logout" id="staffLogoutBtn" href="#">Logout</a>
 						</li>
 					
 						</ul>
@@ -50,8 +50,7 @@
 
 				<main>
 				
-
-				
+		
 
 
 					 <div id="leave_request_div">
@@ -60,14 +59,14 @@
 
 								<div align="center"><div id="staff_info"></div>&nbsp;&nbsp;<!-- <div id="nameofuser"></div> --><small class="badge badge-sm badge-primary">You are logged in as a Staff</small></div>
 
-								<h4 align="center">Create a Leave Request</h4>
+								<h4 align="center">Create a Leave Request  <a data-toggle="modal"  data-target ="#exampleModal"  id="exampleModal" href="#">test</a></h4>
 								<hr>
 								<div class="row">
 								<div class="col-lg-4 col-md-12 col-sm-12"></div>
 								<div class="col-lg-4 col-md-12 col-sm-12">
 									<div align="center" id="staff_notification"></div>
 									<br>
-								<form>
+								<form id="request_form">
 								<div class="form-group">
 								<label>Leave Start Date</label>
 								<input type="date" name="start_date" id="start_date" class="form-control" placeholder="Leave Start Date">
@@ -104,10 +103,6 @@
  
 
 
-					
-
-
-
 
 
 
@@ -125,8 +120,7 @@
       <!--   <script src="js/verify_admin_login.js" type="text/javascript"></script>
          -->
         
-
-        
+       
 </body>
 
 </html>

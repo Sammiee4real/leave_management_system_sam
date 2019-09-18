@@ -2,61 +2,66 @@
 $(document).ready(function(){
 
   ////loads all request immediately jquery is ready
-     $.ajax({
-          type: "GET",
-          url: 'http://localhost:3000/leave_requests', // Using our resources.json file to serve results
-          success: function(result) {
-           //console.log(result);
-           let status = 'default';
-           let action= 'null';
-           //let staffFullName = 'not found';
-           let output =
-          "<table id='example' class='table table-striped'><thead><tr><th>Staff Email</th><th>Approval Status</th><th></th></tr></thead><tbody>";
-        for (let i in result) {
-            if(result[i].approval_status ===1){
-                 status = "<small class='badge badge-sm badge-success'>Approved</small>";
-                 action = " ";
+      // $.ajax({
+      //     type: "GET",
+      //     url: 'http://localhost:3000/leave_requests', // Using our db.json file to serve results
+      //     success: function(result) {
+      //      //console.log(result);
+      //      let status = 'default';
+      //      let action= 'null';
+      //      //let staffFullName = 'not found';
+      //      let output =
+      //     "<table id='example' class='table table-striped'><thead><tr><th>Staff's Fullname</th><th>Email</th><th>Phone</th><th>Approval Status</th><th></th></tr></thead><tbody>";
+      //   for (let i in result) {
+      //       if(result[i].approval_status ==1){
+      //            status = "<small class='badge badge-sm badge-success'>Approved</small>";
+      //            action = " ";
               
-            }
+      //       }
 
-            if(result[i].approval_status === 0){
-                 status = "<small class='badge badge-sm badge-info'>Pending</small>";
-                 action = "<a class = 'btn btn-sm btn-info viewRecord' id='"+result[i].email+"' href='tsdf'>approve</a>";
-            }
+      //       if(result[i].approval_status == 0){
+      //            status = "<small class='badge badge-sm badge-info'>Pending</small>";
+      //            action = "<button class='btn btn-sm btn-info men' data-target ='#exampleModal'   id='men"+result[i].id+"' href='#'>approve</button>";
+      //       }
 
-            if(result[i].approval_status ===2){
-                 status = "<small class='badge badge-sm badge-danger'>Disapproved</small>";
-                 action = "";
-            }
-
-            //get the name and other info of the staff
-            // $.ajax({
-            //   type: "GET",
-            //   url: `http://localhost:3000/staffers?email=${result[i].staffemail}`, // Using our resources.json file to serve results
-            //   success: function(staffResult) {
+      //       if(result[i].approval_status ==2){
+      //            status = "<small class='badge badge-sm badge-danger'>Disapproved</small>";
+      //            action = "";
+      //       }
+      //       //get the name and other info of the staff
+      //       // $.ajax({
+      //       //   type: "GET",
+      //       //   url: `http://localhost:3000/staffers?email=${result[i].staffemail}`, // Using our resources.json file to serve results
+      //       //   success: function(staffResult) {
                   
-            //               if(result[i].staffemail == staffResult.email){
-            //                    staffFullName = staffResult[j].firstname ;
-            //               } else{
-            //                    staffFullName = "sdfsdf";
-            //               }
-            //         }
+      //       //               if(result[i].staffemail == staffResult.email){
+      //       //                    staffFullName = staffResult[j].firstname ;
+      //       //               } else{
+      //       //                    staffFullName = "sdfsdf";
+      //       //               }
+      //       //         }
                
-            //  });
+      //       //  });
+      //     const staffFullName = result[i].staffFirstName +" "+ result[i].staffLastName;
+      //     output +=
+      //       "<tr><td>" +
+      //       staffFullName +
+      //       "</td><td>" +
+      //       result[i].email +
+      //       "</td><td>" +
+      //       result[i].staffPhoneno +
+      //       "</td><td>"+ status  +
+      //       "</td><td><button onclick='fetchSingleRecord("+result[i].id+")' class='approve' id='"+result[i].staffFirstName+"'>hjhj</button></td></tr>";
+      //    }
+  
+      //   output += "</tbody></table>";
+      //    $('#view_requests_table').html(output);
 
-          output +=
-            "<tr><td>" +
-            result[i].staffemail +
-            "</td><td>"+ status  +
-            "</td><td>&nbsp;&nbsp;"+action+"</td></tr>";
-         
-          }
 
-         output += "</tbody></table>";
-         $('#view_requests_table').html(output);
-       }
+      //  }
 
-        });
+      //   });
+
 
 
 
@@ -80,7 +85,11 @@ $(document).ready(function(){
 
 
 
-      
+
+     
+
+
+
 
 
 
@@ -129,7 +138,7 @@ $(document).ready(function(){
           window.location.assign('adminHome.html');
 
         } else {
-          $('#notification').html('<span class="badge badge-danger">Username or Password Incorrect.</span>');
+          $('#notification').html('<span class="badge badge-danger">Email or Password Incorrect.</span>');
            $('#adminLoginBtn').html('Login');
         }
       }
@@ -167,6 +176,7 @@ $(document).ready(function(){
       },
       beforeSend: function() {
        $('#staffLoginBtn').html('Loading...');
+       $('#staffLoginBtn').html('Login');
 
        },
       success: function(response) {
@@ -190,7 +200,7 @@ $(document).ready(function(){
 
         } else {
           //
-          $('#staff_notification').html('<span class="badge badge-danger"></span>');
+          $('#staff_notification').html('<span class="badge badge-danger">Email or Password Incorrect</span>');
            $('#staffLoginBtn').html('Login');
         }
       }
@@ -319,14 +329,56 @@ $(document).ready(function(){
     const end_date = $('#end_date').val();
     const start_date = $('#start_date').val();
      const leave_purpose = $('#leave_purpose').val();
+     const approval_status = 0;
      let  email = window.localStorage.getItem('staffLoginEmail');
      let  staffFirstName = window.localStorage.getItem('staffFirstName');
      let  staffLastName = window.localStorage.getItem('staffLastName');
      let  staffPhoneno = window.localStorage.getItem('staffPhoneno');
 
+         $.ajax({
+      method: 'GET',
+      url: `http://localhost:3000/leave_requests?email=${email}`,
+      data: {
+        email
+      },
+      beforeSend: function() {
+      $('#leaveRequestBtn').html('Loading...');
+      $('#leaveRequestBtn').html('Send Leave Request');
+      },
+      success: function(response) {
+        if (response.length) {
+            $('#staff_notification').html('<span class="badge badge-danger">You have a running leave request.</span>');
+            $('#registerStaffBtn').html('Register Now');
+        } else {
+          //Submit the user data if the user does not exist
+          $.ajax({
+            method: 'POST',
+            url: 'http://localhost:3000/leave_requests',
+            data: {
+              email,
+              staffFirstName,
+              staffLastName,
+              staffPhoneno,
+              start_date,
+              end_date,
+              leave_purpose,
+              approval_status 
 
-    
-      alert(staffPhoneno);  
+            },
+            beforeSend: function() {
+              $('#leaveRequestBtn').html('Loading...');
+              $('#leaveRequestBtn').html('Send Leave Request');
+            },
+            success: function() {
+              $('#staff_notification').html('<span class="badge badge-success">You have successfully sent a leave request.&nbsp;&nbsp;<a id="#view_all_staff"  href="#>View all Staffers</a></span>');
+                $('#leaveRequestBtn').hide();
+                $('#request_form').hide();
+                
+            },
+          });
+        }
+      },
+    });
         
 
   });
@@ -383,7 +435,7 @@ $(document).ready(function(){
      $('#view_staff_div').hide();
 
     
-         $.ajax({
+            $.ajax({
           type: "GET",
           url: 'http://localhost:3000/leave_requests', // Using our resources.json file to serve results
           success: function(result) {
@@ -392,7 +444,7 @@ $(document).ready(function(){
            let action= 'null';
            //let staffFullName = 'not found';
            let output =
-          "<table id='example' class='table table-striped'><thead><tr><th>Staff Email</th><th>Approval Status</th><th></th></tr></thead><tbody>";
+          "<table id='example' class='table table-striped'><thead><tr><th>Staff's Fullname</th><th>Email</th><th>Phone</th><th>Approval Status</th><th></th></tr></thead><tbody>";
         for (let i in result) {
             if(result[i].approval_status ===1){
                  status = "<small class='badge badge-sm badge-success'>Approved</small>";
@@ -402,7 +454,7 @@ $(document).ready(function(){
 
             if(result[i].approval_status === 0){
                  status = "<small class='badge badge-sm badge-info'>Pending</small>";
-                 action = "<a class = 'btn btn-sm btn-info viewRecord' id='"+result[i].email+"' href='tsdf'>approve</a>";
+                 action = "<small><a class = 'btn btn-sm btn-info viewRecord' id='"+result[i].email+"' href='"+result[i].email+"'>approve</a></small>";
             }
 
             if(result[i].approval_status ===2){
@@ -424,10 +476,14 @@ $(document).ready(function(){
             //         }
                
             //  });
-
+          const staffFullName = result[i].staffFirstName +" "+ result[i].staffLastName;
           output +=
             "<tr><td>" +
-            result[i].staffemail +
+            staffFullName +
+            "</td><td>" +
+            result[i].email +
+            "</td><td>" +
+            result[i].staffPhoneno +
             "</td><td>"+ status  +
             "</td><td>&nbsp;&nbsp;"+action+"</td></tr>";
          
@@ -438,6 +494,7 @@ $(document).ready(function(){
        }
 
         });
+
 
       });
 

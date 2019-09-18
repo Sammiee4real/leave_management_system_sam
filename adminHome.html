@@ -135,6 +135,8 @@
 								<div class="col-lg-1 col-md-12 col-sm-12"></div>
 								<div class="col-lg-10 col-md-12 col-sm-12">
 										<div class="col-lg-10 col-md-12 col-sm-12" id="view_requests_table">
+																		<!-- Modal -->
+
 
 
 										</div>
@@ -143,9 +145,53 @@
 								<div class="col-lg-1 col-md-12 col-sm-12"></div>
 								</div>
 
-						
+					 </div>
 
-					  </div>
+
+				<!-- 	  <div id="view_single_requests_div">
+					  			
+								<br>
+								
+							
+								
+								 <h4 align="center">View Single Leave Request</h4>
+								<div class="row">
+								<div class="col-lg-1 col-md-12 col-sm-12"></div>
+								<div class="col-lg-10 col-md-12 col-sm-12">
+										<div class="col-lg-10 col-md-12 col-sm-12" id="view_single_request_table">
+																		odal 
+
+
+
+										</div>
+
+								</div>
+								<div class="col-lg-1 col-md-12 col-sm-12"></div>
+								</div>
+
+					 </div> -->
+
+					
+
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+					<div class="modal-content">
+					<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">View Record</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					</div>
+					<div class="modal-body">
+					...
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+					</div>
+					</div>
+					</div>
 
 
 
@@ -176,6 +222,153 @@
 <!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+	<script type="text/javascript">
+ 
+
+			      $.ajax({
+          type: "GET",
+          url: 'http://localhost:3000/leave_requests', // Using our db.json file to serve results
+          success: function(result) {
+           //console.log(result);
+           let status = 'default';
+           let action= 'null';
+           //let staffFullName = 'not found';
+           let output =
+          "<table id='example' class='table table-striped'><thead><tr><th>Staff's Fullname</th><th>Email</th><th>Phone</th><th>Approval Status</th><th></th></tr></thead><tbody>";
+        for (let i in result) {
+            if(result[i].approval_status ==1){
+                 status = "<small class='badge badge-sm badge-success'>Approved</small>";
+                 action = " <small class='badge badge-sm badge-info'>Completed</small>";
+              
+            }
+
+            if(result[i].approval_status == '0'){
+                 status = "<small class='badge badge-sm badge-info'>Pending</small>";
+                 action = "<button class='btn btn-sm btn-info men' onclick='approveRequest("+result[i].id+")' data-target ='#exampleModal'   id='men"+result[i].id+"' href='#'>approve</button>";
+            }
+
+            if(result[i].approval_status =='2'){
+                 status = "<small class='badge badge-sm badge-danger'>Disapproved</small>";
+                 action = "";
+            }
+            //get the name and other info of the staff
+            // $.ajax({
+            //   type: "GET",
+            //   url: `http://localhost:3000/staffers?email=${result[i].staffemail}`, // Using our resources.json file to serve results
+            //   success: function(staffResult) {
+                  
+            //               if(result[i].staffemail == staffResult.email){
+            //                    staffFullName = staffResult[j].firstname ;
+            //               } else{
+            //                    staffFullName = "sdfsdf";
+            //               }
+            //         }
+               
+            //  });
+          const staffFullName = result[i].staffFirstName +" "+ result[i].staffLastName;
+          output +=
+            "<tr><td>" +
+            staffFullName +
+            "</td><td>" +
+            result[i].email +
+            "</td><td>" +
+            result[i].staffPhoneno +
+            "</td><td>"+ status  +
+            "</td><td><a href='#'  class='badge badge-sm badge-success' onclick='fetchSingleRecord("+result[i].id+")' >view details</a></td><td>"+action+"</td></tr>";
+         }
+  
+        output += "</tbody></table>";
+         $('#view_requests_table').html(output);
+
+
+       }
+
+        });
+
+
+
+
+
+
+
+///////displaying a single record
+function fetchSingleRecord(data){
+     
+   			$.ajax({
+			      method: 'GET',
+			      url: `http://localhost:3000/leave_requests?id=${data}`,
+			      data: {
+			        data:data
+			      },
+			      // beforeSend: function() {
+			      //  $('#staffLoginBtn').html('Loading...');
+			      //  $('#staffLoginBtn').html('Login');
+
+			      //  },
+			      success: function(response) {
+			        if (response.length) { //login was successfull
+			          let leave_purpose = response[0].leave_purpose;
+			          let end_date = response[0].end_date;
+			          let Fullname = response[0].staffFirstName +' '+response[0].staffLastName;
+			           let output =
+			          "<table id='example' class='table table-striped'><thead><tr><th><strong>Leave Request Details of "+Fullname+"</strong>&nbsp;&nbsp;&nbsp;<a href='#'  class='badge badge-sm badge-info' onclick='goBack()'>Go Back</a></th></tr></thead><tbody>";
+			           
+			          output +="<tr><td>Email: </td><td>"+response[0].email+"</td></tr><tr><td>First Name: </td><td>"+response[0].staffFirstName+"</td></tr><tr><td>Last Name: </td><td>"+response[0].staffLastName+"</td></tr><tr><td>Phone No: </td><td>"+response[0].staffPhoneno+"</td><tr><td>Leave Purpose: </td><td>"+response[0].leave_purpose+"</td></tr><tr><td>Start Date: </td><td>"+response[0].start_date+"</td></tr><tr><td>End Date: </td><td>"+response[0].end_date+"</td></tr><tr><td>Leave Purpose: </td><td>"+leave_purpose+"</td></tr></tr>";
+
+			           output += "</tbody></table>";
+			          $('#view_requests_table').html(output);
+			          
+
+			         // $('#view_all_requests_div').hide();
+			           $('#view_single_requests_div').show();
+			          $('#view_single_request_table').html(output);
+			         // alert(leave_purpose);
+
+			      }
+			     } 
+  
+   });
+
+     } 
+
+
+ ///////approve a leave requests
+function approveRequest(data){
+        
+   			$.ajax({
+			      method: 'PUT',
+			      url: `http://localhost:3000/leave_requests/${data}`,
+			      data: {
+			        data
+			      },
+			      // beforeSend: function() {
+			      //  $('#staffLoginBtn').html('Loading...');
+			      //  $('#staffLoginBtn').html('Login');
+
+			      //  },
+			      success: function(response) {
+			        if (response.length) { //login was successfull
+			        //  let approval_status = response[0].approval_status;
+			       //  let approval_status = 0;
+			    	//$('#notification').html('<p>Success</p>');
+			      }
+			     } 
+  
+   });
+
+     } 
+      
+
+
+function goBack(){
+	 window.location.assign('adminHome.html');
+
+}
+
+    </script>
+
+
+
 		<!-- Popper JS -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
@@ -184,7 +377,7 @@
         <script src="js/forms.js" type="text/javascript"></script>
       <!--   <script src="js/verify_admin_login.js" type="text/javascript"></script>
          -->
-        
+      
 
         
 </body>
