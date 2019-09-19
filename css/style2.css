@@ -141,7 +141,8 @@
   footer .glyphicon {
     font-size: 20px;
     margin-bottom: 20px;
-    color: #f4511e;
+    
+    /*color: #f4511e;*/
   }
   .slideanim {visibility:hidden;}
   .slide {
@@ -194,15 +195,4 @@
       font-size: 150px;
     }
   }
-
-
-#darken {    width: auto;
-    height: 40px;
-    margin:0;
-    border: hidden;
-    padding: 20%;
- background-image: url("../img/bg5.jpg");
- background-repeat: no-repeat;
- background-size: cover;
-}
 

@@ -24,6 +24,10 @@
 	display: none;
 }
 
+#my_request_div{
+  display: none;
+}
+
   /* Set black background color, white text and some padding */
     footer {
       background-color: green;

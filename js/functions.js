@@ -1,3 +1,6 @@
+
+
+
 	$.ajax({
           type: "GET",
           url: 'http://localhost:3000/leave_requests', // Using our db.json file to serve results
@@ -46,6 +49,11 @@
        }
 
         });
+
+
+
+	
+
 
 
 
@@ -143,3 +151,142 @@ function disapproveRequest(id){
 	 				window.location.assign('adminHome.html');
 
 			}
+
+
+
+
+
+
+//////////////staff area
+			//update leave request
+			 ///////approve a leave requests
+           function updateLeave(){
+        		
+        			let output = "";
+			        	$.ajax({
+			        		method: 'GET',
+			        		url: `http://localhost:3000/leave_requests?email=${myemail}`,
+			        		data: {
+			        			myemail
+			        		},
+			        	    success:function(resp){
+                               if(resp.length){
+                               	   const start_date = resp[0].start_date;
+                               	   const email = resp[0].email;
+                               	   const staffFirstName = resp[0].staffFirstName;
+                               	   const staffLastName = resp[0].staffLastName;
+                               	    const staffPhoneno = resp[0].staffPhoneno;
+                               	   const end_date = resp[0].end_date;
+                               	   const leave_purpose = resp[0].leave_purpose;
+                               	   const leave_detail = resp[0].leave_detail;
+                               	   const id = resp[0].id;
+                               	
+
+                               		output +='<h4 align="center">Update Leave Request </h4>';
+                               		output +='<div class="row"><div class="col-lg-4 col-md-12 col-sm-12"></div><div class="col-lg-4 col-md-12 col-sm-12"><div align="center" id="staff_notificationn"></div><br>'; 
+                               		output +='<form id="request_form"><div class="form-group"><label>Leave Start Date</label><input type="date" name="start_date_update" required id="start_date_update" class="form-control" value='+start_date+' placeholder="Leave Start Date"></div><div class="form-group"><label>Leave End Date</label><input type="date" name="end_date_update" value='+end_date+' required id="end_date_update" class="form-control" placeholder="Leave End Date"></div><div class="form-group"><label>Purpose of Leave</label><select class="form-control" id="leave_purpose_update" required=""><option value="'+leave_purpose+'">'+leave_purpose+'</option><option value="Maternity Leave">Maternity Leave</option><option value="Paternity Leave">Paternity Leave</option><option value="Bereavement Leave">Bereavement Leave</option><option value="Sick Leave">Sick Leave</option><option value="Administrative Leave">Administrative leave</option><option value="Adoption leave">Adoption leave</option><option value="Annual Leave">Annual Leave</option><option value="Nursing Leave">Nursing Leave</option><option value="Study Leave">Study Leave</option><option value="Casual Leave">Casual Leave</option><option value="Vacation Leave">Vacation Leave</option><option value="Others">Others</option></select></div><div class="form-group"><label>Leave Description</label><textarea type="" class="form-control" name="leave_detail" id="leave_detail_update">'+leave_detail+'</textarea></div></div><div class="col-lg-4 col-md-12 col-sm-12"></div></div><div class="row"><div class="col-lg-4 col-md-12 col-sm-12"></div><div class="col-lg-4 col-md-12 col-sm-12"><a href="staffHome.html"  class="btn btn-md btn-info">Back</a>&nbsp;&nbsp;<button id="updateleaveRequestBtn" onclick="updateRequest('+id+')" class="btn btn-md btn-primary">Update Request</button></div><div class="col-lg-4 col-md-12 col-sm-12"></div></div>';
+                               		
+                               	}
+
+                               	$('#leave_request_div').hide();
+                               	$('#show_update_request_div').html(output);
+
+                               	 $('#my_request_div').remove();
+                                // $('#my_request_table').empty(myoutput);
+               
+			        	    }
+			        	});
+			      }
+
+
+
+
+           function deleteLeave(){
+        			//alert(email);
+        			let output = "";
+			        	$.ajax({
+			        		method: 'GET',
+			        		url: `http://localhost:3000/leave_requests?email=${myemail}`,
+			        		data: {
+			        			myemail
+			        		},
+			        	    success:function(resp){
+                               if(resp.length){
+                               	   const start_date = resp[0].start_date;
+                               	   const email = resp[0].email;
+                               	   const staffFirstName = resp[0].staffFirstName;
+                               	   const staffLastName = resp[0].staffLastName;
+                               	    const staffPhoneno = resp[0].staffPhoneno;
+                               	   const end_date = resp[0].end_date;
+                               	   const leave_purpose = resp[0].leave_purpose;
+                               	   const leave_detail = resp[0].leave_detail;
+                               	   const id = resp[0].id;
+                               	
+
+                               		output +='<h4 align="center">Delete Leave Request<br><span style="color:red;font-size:15px;">Please note that once the delete button is clicked, your request is erased from the HR Database<span> </h4>';
+                               		output +='<div class="row"><div class="col-lg-4 col-md-12 col-sm-12"></div><div class="col-lg-4 col-md-12 col-sm-12"><div align="center" id="staff_notificationn"></div><br>'; 
+                               		output +='<form id="request_form"><div class="form-group"><label>Leave Start Date</label><input type="date" name="start_date_update" required id="start_date_update" class="form-control" value='+start_date+' placeholder="Leave Start Date"></div><div class="form-group"><label>Leave End Date</label><input type="date" name="end_date_update" value='+end_date+' required id="end_date_update" class="form-control" placeholder="Leave End Date"></div><div class="form-group"><label>Purpose of Leave</label><select class="form-control" id="leave_purpose_update" required=""><option value="'+leave_purpose+'">'+leave_purpose+'</option><option value="Maternity Leave">Maternity Leave</option><option value="Paternity Leave">Paternity Leave</option><option value="Bereavement Leave">Bereavement Leave</option><option value="Sick Leave">Sick Leave</option><option value="Administrative Leave">Administrative leave</option><option value="Adoption leave">Adoption leave</option><option value="Annual Leave">Annual Leave</option><option value="Nursing Leave">Nursing Leave</option><option value="Study Leave">Study Leave</option><option value="Casual Leave">Casual Leave</option><option value="Vacation Leave">Vacation Leave</option><option value="Others">Others</option></select></div><div class="form-group"><label>Leave Description</label><textarea type="" class="form-control" name="leave_detail" id="leave_detail_update">'+leave_detail+'</textarea></div></div><div class="col-lg-4 col-md-12 col-sm-12"></div></div><div class="row"><div class="col-lg-4 col-md-12 col-sm-12">';
+                               		output +='</div><div class="col-lg-4 col-md-12 col-sm-12"><a href="staffHome.html"  class="btn btn-md btn-info">Cancel</a>&nbsp;&nbsp;<button id="updateleaveRequestBtn" onclick="deleteRequest('+id+')" class="btn btn-md btn-danger">Delete Request</button></div><div class="col-lg-4 col-md-12 col-sm-12"></div></div>';
+                               		
+                               	}
+
+                               	$('#leave_request_div').hide();
+                               	$('#show_update_request_div').html(output);
+
+                               	 $('#my_request_div').remove();
+               
+			        	    }
+			        	});
+			      }
+
+
+
+			function deleteRequest(id){
+					
+				$.ajax({
+			        		method: 'DELETE',
+			        		url: `http://localhost:3000/leave_requests/${id}`,
+			        		data: {
+			        		},
+			        	    success:function(del_response){
+                               
+                               		//alert('success');
+                               		 $('#staff_notificationn').html('<span class="badge badge-danger">Deletion  of your leave request was successful &nbsp;&nbsp;<a href="staffHome.html" class="text-white">Return to Dashboard</a></span>');
+     
+                              
+                            }
+
+			        	});
+			}
+
+
+			function updateRequest(id){
+					start_date_update = $('#start_date_update').val();
+					end_date_update = $('#end_date_update').val();
+					leave_purpose_update = $('#leave_purpose_update').val();
+					leave_detail_update = $('#leave_detail_update').val();
+			        	
+				$.ajax({
+			        		method: 'PATCH',
+			        		url: `http://localhost:3000/leave_requests/${id}`,
+			        		data: {
+			        			start_date: start_date_update,
+			        			end_date: end_date_update,
+			        			leave_purpose: leave_purpose_update,
+			        			leave_detail: leave_detail_update
+			        		},
+			        	    success:function(update_response){
+                               
+                               		//alert('success');
+                               		 $('#staff_notificationn').html('<span class="badge badge-success">Update of your leave request was successful &nbsp;&nbsp;<a href="staffHome.html" class="text-white">Return to Dashboard</a></span>');
+     
+                              
+                            }
+
+			        	});
+			}
+			     
+			     
+	
+
+
