@@ -26,13 +26,19 @@
 						<li class="nav-item active">
 						<a class="nav-link text-white" href="index.html">Main Page <span class="sr-only">(current)</span> |</a>
 						</li>
+
+
 						<!-- <li class="nav-item">
 						<a class="nav-link text-white register_staff" id="register_staff" href="#">Register a Staff |</a>
 						</li>  -->
 
-						 <li class="nav-item">
+						<!--  <li class="nav-item">
 						<a class="nav-link text-white view_all_requests" id="view_all_requests" href="#">View Leave Requests |</a>
-						</li> 
+						</li>  -->
+
+						<li class="nav-item">
+						<a class="nav-link text-white"  href="adminHome.html">View All Requests |</a>
+						</li>  
 				
 
 						<li class="nav-item dropdown">
@@ -148,7 +154,7 @@
 					 </div>
 
 
-				<!-- 	  <div id="view_single_requests_div">
+					  <div id="view_single_requests_div">
 					  			
 								<br>
 								
@@ -159,7 +165,7 @@
 								<div class="col-lg-1 col-md-12 col-sm-12"></div>
 								<div class="col-lg-10 col-md-12 col-sm-12">
 										<div class="col-lg-10 col-md-12 col-sm-12" id="view_single_request_table">
-																		odal 
+																		 
 
 
 
@@ -169,7 +175,7 @@
 								<div class="col-lg-1 col-md-12 col-sm-12"></div>
 								</div>
 
-					 </div> -->
+					 </div> 
 
 					
 
@@ -219,13 +225,28 @@
 
 				</main>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 	<script type="text/javascript">
  
 
-			      $.ajax({
+		$.ajax({
           type: "GET",
           url: 'http://localhost:3000/leave_requests', // Using our db.json file to serve results
           success: function(result) {
@@ -236,7 +257,7 @@
            let output =
           "<table id='example' class='table table-striped'><thead><tr><th>Staff's Fullname</th><th>Email</th><th>Phone</th><th>Approval Status</th><th></th></tr></thead><tbody>";
         for (let i in result) {
-            if(result[i].approval_status ==1){
+            if(result[i].approval_status =='1'){
                  status = "<small class='badge badge-sm badge-success'>Approved</small>";
                  action = " <small class='badge badge-sm badge-info'>Completed</small>";
               
@@ -244,12 +265,12 @@
 
             if(result[i].approval_status == '0'){
                  status = "<small class='badge badge-sm badge-info'>Pending</small>";
-                 action = "<button class='btn btn-sm btn-info men' onclick='approveRequest("+result[i].id+")' data-target ='#exampleModal'   id='men"+result[i].id+"' href='#'>approve</button>";
+                 action = "<button class='btn btn-sm btn-info men' onclick='approveRequest("+result[i].id+")' data-target ='#exampleModal'  href='#'>approve</button>&nbsp;&nbsp;<button class='btn btn-sm btn-danger men' onclick='disapproveRequest("+result[i].id+")' data-target ='#exampleModal'   id='men"+result[i].id+"' href='#'>disapprove</button>";
             }
 
             if(result[i].approval_status =='2'){
                  status = "<small class='badge badge-sm badge-danger'>Disapproved</small>";
-                 action = "";
+                 action = " <small class='badge badge-sm badge-danger'>Completed</small>";
             }
             //get the name and other info of the staff
             // $.ajax({
@@ -306,7 +327,7 @@ function fetchSingleRecord(data){
 
 			      //  },
 			      success: function(response) {
-			        if (response.length) { //login was successfull
+			        if (response.length) { //
 			          let leave_purpose = response[0].leave_purpose;
 			          let end_date = response[0].end_date;
 			          let Fullname = response[0].staffFirstName +' '+response[0].staffLastName;
@@ -319,7 +340,7 @@ function fetchSingleRecord(data){
 			          $('#view_requests_table').html(output);
 			          
 
-			         // $('#view_all_requests_div').hide();
+			         $('#view_all_requests_div').hide();
 			           $('#view_single_requests_div').show();
 			          $('#view_single_request_table').html(output);
 			         // alert(leave_purpose);
@@ -333,31 +354,50 @@ function fetchSingleRecord(data){
 
 
  ///////approve a leave requests
-function approveRequest(data){
+function approveRequest(id){
         
-   			$.ajax({
-			      method: 'PUT',
-			      url: `http://localhost:3000/leave_requests/${data}`,
-			      data: {
-			        data
-			      },
-			      // beforeSend: function() {
-			      //  $('#staffLoginBtn').html('Loading...');
-			      //  $('#staffLoginBtn').html('Login');
-
-			      //  },
-			      success: function(response) {
-			        if (response.length) { //login was successfull
-			        //  let approval_status = response[0].approval_status;
-			       //  let approval_status = 0;
-			    	//$('#notification').html('<p>Success</p>');
+			        	$.ajax({
+			        		method: 'PATCH',
+			        		url: `http://localhost:3000/leave_requests/${id}`,
+			        		data: {
+			        			approval_status: '1'
+			        		},
+			        	    success:function(update_response){
+                               if(!update_response.length){
+                               		alert('success');
+                               }
+                               
+			        	    
+			        	    }
+			        	});
 			      }
-			     } 
+			     
   
-   });
+  
 
-     } 
-      
+ ///////disapprove a leave requests
+function disapproveRequest(id){
+        
+			        	$.ajax({
+			        		method: 'PATCH',
+			        		url: `http://localhost:3000/leave_requests/${id}`,
+			        		data: {
+			        			approval_status: '2'
+			        		},
+			        	    success:function(update_response){
+                               if(!update_response.length){
+                               		alert('success');
+                               }
+                               
+			        	    
+			        	    }
+			        	});
+			      }
+			     
+    
+
+
+
 
 
 function goBack(){

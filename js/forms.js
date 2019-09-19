@@ -62,15 +62,15 @@ $(document).ready(function(){
 
       //   });
 
-
-
-
-
      //gets the user's detaills immediatelt jquery loads
       let  email = window.localStorage.getItem('staffLoginEmail');
      let  staffFirstName = window.localStorage.getItem('staffFirstName');
      let  staffLastName = window.localStorage.getItem('staffLastName');
      let  staffPhoneno = window.localStorage.getItem('staffPhoneno');
+
+
+    
+  
 
      $('#staff_info').html('<strong>Welcome '+ staffFirstName+' '+staffLastName+' ( '+staffPhoneno+' )');
 
@@ -236,6 +236,10 @@ $(document).ready(function(){
 
 
 
+ 
+
+
+
 //display form registering  a staff
   $('#register_staff').click(function(){
     //$('#register').text('please wait...');
@@ -329,11 +333,24 @@ $(document).ready(function(){
     const end_date = $('#end_date').val();
     const start_date = $('#start_date').val();
      const leave_purpose = $('#leave_purpose').val();
+      const leave_detail = $('#leave_detail').val();
      const approval_status = 0;
      let  email = window.localStorage.getItem('staffLoginEmail');
      let  staffFirstName = window.localStorage.getItem('staffFirstName');
      let  staffLastName = window.localStorage.getItem('staffLastName');
      let  staffPhoneno = window.localStorage.getItem('staffPhoneno');
+
+     if(!end_date || !start_date || !leave_purpose || !leave_detail){
+          $('#staff_notification').html('<span class="badge badge-danger">Kindly fill all fields</span>');
+            $('#registerStaffBtn').html('Register Now');
+     }
+
+     else if(end_date < start_date ){
+          $('#staff_notification').html('<span class="badge badge-danger">End Date must not be greater than Start Date</span>');
+            $('#registerStaffBtn').html('Register Now');
+     }
+
+     else{
 
          $.ajax({
       method: 'GET',
@@ -379,6 +396,8 @@ $(document).ready(function(){
         }
       },
     });
+
+  }
         
 
   });
