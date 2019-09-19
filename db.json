@@ -93,16 +93,39 @@
   ],
   "leave_requests": [
     {
-      "staffemail": "koli@gmail.com",
-      "approval_status": 0
+      "email": "jame22s@gmail.com",
+      "staffFirstName": "james",
+      "staffLastName": "Adelakun2",
+      "staffPhoneno": "09012899222222",
+      "start_date": "2019-09-01",
+      "end_date": "2019-11-28",
+      "leave_purpose": "s2222doofsdf",
+      "approval_status": "1",
+      "leave_detail": "I need rest sir",
+      "id": 2
     },
     {
-      "staffemail": "idris@gmail.com",
-      "approval_status": 1
+      "email": "banda@gmail.com",
+      "staffFirstName": "Banda",
+      "staffLastName": "Johnson",
+      "staffPhoneno": "09033889900",
+      "start_date": "2019-09-04",
+      "end_date": "2019-09-08",
+      "leave_purpose": "Maternity Leave",
+      "approval_status": "1",
+      "id": 3
     },
-     {
-      "staffemail": "agrifo@yahoo.com",
-      "approval_status": 2
+    {
+      "email": "koli@gmail.com",
+      "staffFirstName": "Kola",
+      "staffLastName": "David",
+      "staffPhoneno": "08168508033",
+      "start_date": "2019-09-27",
+      "end_date": "2019-10-01",
+      "leave_purpose": "Adoption leave",
+      "approval_status": "0",
+      "leave_detail": "down with feverkkk",
+      "id": 4
     }
   ]
 }
