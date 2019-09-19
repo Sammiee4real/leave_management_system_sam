@@ -1,3 +1,4 @@
+
 #register_div{
 	display: none;
 }
@@ -23,6 +24,12 @@
 	display: none;
 }
 
+  /* Set black background color, white text and some padding */
+    footer {
+      background-color: green;
+      color: white;
+      padding: 15px;
+    }
 
 
 

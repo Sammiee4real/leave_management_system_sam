@@ -1,67 +1,7 @@
 
 $(document).ready(function(){
 
-  ////loads all request immediately jquery is ready
-      // $.ajax({
-      //     type: "GET",
-      //     url: 'http://localhost:3000/leave_requests', // Using our db.json file to serve results
-      //     success: function(result) {
-      //      //console.log(result);
-      //      let status = 'default';
-      //      let action= 'null';
-      //      //let staffFullName = 'not found';
-      //      let output =
-      //     "<table id='example' class='table table-striped'><thead><tr><th>Staff's Fullname</th><th>Email</th><th>Phone</th><th>Approval Status</th><th></th></tr></thead><tbody>";
-      //   for (let i in result) {
-      //       if(result[i].approval_status ==1){
-      //            status = "<small class='badge badge-sm badge-success'>Approved</small>";
-      //            action = " ";
-              
-      //       }
-
-      //       if(result[i].approval_status == 0){
-      //            status = "<small class='badge badge-sm badge-info'>Pending</small>";
-      //            action = "<button class='btn btn-sm btn-info men' data-target ='#exampleModal'   id='men"+result[i].id+"' href='#'>approve</button>";
-      //       }
-
-      //       if(result[i].approval_status ==2){
-      //            status = "<small class='badge badge-sm badge-danger'>Disapproved</small>";
-      //            action = "";
-      //       }
-      //       //get the name and other info of the staff
-      //       // $.ajax({
-      //       //   type: "GET",
-      //       //   url: `http://localhost:3000/staffers?email=${result[i].staffemail}`, // Using our resources.json file to serve results
-      //       //   success: function(staffResult) {
-                  
-      //       //               if(result[i].staffemail == staffResult.email){
-      //       //                    staffFullName = staffResult[j].firstname ;
-      //       //               } else{
-      //       //                    staffFullName = "sdfsdf";
-      //       //               }
-      //       //         }
-               
-      //       //  });
-      //     const staffFullName = result[i].staffFirstName +" "+ result[i].staffLastName;
-      //     output +=
-      //       "<tr><td>" +
-      //       staffFullName +
-      //       "</td><td>" +
-      //       result[i].email +
-      //       "</td><td>" +
-      //       result[i].staffPhoneno +
-      //       "</td><td>"+ status  +
-      //       "</td><td><button onclick='fetchSingleRecord("+result[i].id+")' class='approve' id='"+result[i].staffFirstName+"'>hjhj</button></td></tr>";
-      //    }
   
-      //   output += "</tbody></table>";
-      //    $('#view_requests_table').html(output);
-
-
-      //  }
-
-      //   });
-
      //gets the user's detaills immediatelt jquery loads
       let  email = window.localStorage.getItem('staffLoginEmail');
      let  staffFirstName = window.localStorage.getItem('staffFirstName');
@@ -244,9 +184,13 @@ $(document).ready(function(){
   $('#register_staff').click(function(){
     //$('#register').text('please wait...');
       //alert('test');
+       $('#view_single_requests_div').hide();
       $('#admin_register_div').fadeIn();
       $('#view_all_requests_div').hide();
       $('#view_staff_div').hide();
+     
+      
+
 
   });
 
@@ -410,7 +354,8 @@ $(document).ready(function(){
      $('#view_staff_div').fadeIn();
      $('#view_all_requests_div').hide();
      $('#admin_register_div').hide();
-
+     $('#view_single_requests_div').hide();
+     let k = 1;
     
      $.ajax({
           type: "GET",
@@ -418,10 +363,10 @@ $(document).ready(function(){
           success: function(result) {
            //console.log(result);
            let output =
-          "<table id='example' class='table table-striped'><thead><tr><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone No</th></tr></thead><tbody>";
+          "<table id='example' class='table table-striped table-bordered'><thead><tr><th>SN</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone No</th></tr></thead><tbody>";
         for (let i in result) {
           output +=
-            "<tr><td>" +
+            "<tr><td>"+k+"</td><td>" +
             result[i].firstname +
             "</td><td>" +
              result[i].lastname +
@@ -430,9 +375,9 @@ $(document).ready(function(){
             "</td><td>" +
              result[i].phoneno +
             "</td></tr>";
-         
+          k++;
           }
-
+         
          output += "</tbody></table>";
          $('#view_staff_table').html(output);
        }
@@ -444,128 +389,7 @@ $(document).ready(function(){
 
 
 
-
-//view leave requests
-  $('#view_all_requests').click(function(event) {
-    event.preventDefault();
-     $('#view_all_requests_div').fadeIn();
-     $('#view_staff_div').hide();
-     $('#admin_register_div').hide();
-     $('#view_staff_div').hide();
-
-    
-            $.ajax({
-          type: "GET",
-          url: 'http://localhost:3000/leave_requests', // Using our resources.json file to serve results
-          success: function(result) {
-           //console.log(result);
-           let status = 'default';
-           let action= 'null';
-           //let staffFullName = 'not found';
-           let output =
-          "<table id='example' class='table table-striped'><thead><tr><th>Staff's Fullname</th><th>Email</th><th>Phone</th><th>Approval Status</th><th></th></tr></thead><tbody>";
-        for (let i in result) {
-            if(result[i].approval_status ===1){
-                 status = "<small class='badge badge-sm badge-success'>Approved</small>";
-                 action = " ";
-              
-            }
-
-            if(result[i].approval_status === 0){
-                 status = "<small class='badge badge-sm badge-info'>Pending</small>";
-                 action = "<small><a class = 'btn btn-sm btn-info viewRecord' id='"+result[i].email+"' href='"+result[i].email+"'>approve</a></small>";
-            }
-
-            if(result[i].approval_status ===2){
-                 status = "<small class='badge badge-sm badge-danger'>Disapproved</small>";
-                 action = "";
-            }
-
-            //get the name and other info of the staff
-            // $.ajax({
-            //   type: "GET",
-            //   url: `http://localhost:3000/staffers?email=${result[i].staffemail}`, // Using our resources.json file to serve results
-            //   success: function(staffResult) {
-                  
-            //               if(result[i].staffemail == staffResult.email){
-            //                    staffFullName = staffResult[j].firstname ;
-            //               } else{
-            //                    staffFullName = "sdfsdf";
-            //               }
-            //         }
-               
-            //  });
-          const staffFullName = result[i].staffFirstName +" "+ result[i].staffLastName;
-          output +=
-            "<tr><td>" +
-            staffFullName +
-            "</td><td>" +
-            result[i].email +
-            "</td><td>" +
-            result[i].staffPhoneno +
-            "</td><td>"+ status  +
-            "</td><td>&nbsp;&nbsp;"+action+"</td></tr>";
-         
-          }
-
-         output += "</tbody></table>";
-         $('#view_requests_table').html(output);
-       }
-
-        });
-
-
-      });
-
-
-
-
-
-
-
-
-  //////////disregard down
-
-
-
-	$('#login_admin').click(function(){
-		//$('#login').text('please wait...');
-	    //alert('test');
-	    $('#register_div').slideUp();
-	    $('#login_div').slideDown();
-	    $('#view_all_requests_div').hide();
-	});
-
-
-	$('#register_staff').click(function(){
-		//$('#register').text('please wait...');
-	    //alert('test');
-	    $('#login_div').slideUp();
-	    $('#register_div').slideDown();
-	     $('#view_all_requests_div').hide();
-	});
-
-	
-
-
-		$('#register').click(function(){
-		   $('#register').text('please wait...');
-		   $('#login').text('Login');
-		   });
-
-
-
-		$('#login').click(function(){
-		   $('#login').text('please wait...');
-		   $('#register').text('Register Now');
-
-	});
-
-
-    //$('#example').DataTable();
-
-
-
+    $('#example').DataTable();
 
 
 
