@@ -346,7 +346,7 @@ $(document).ready(function(){
      }
 
      else if(end_date < start_date ){
-          $('#staff_notification').html('<span class="badge badge-danger">End Date must not be greater than Start Date</span>');
+          $('#staff_notification').html('<span class="badge badge-danger">End Date cannot be less than Start Date</span>');
             $('#registerStaffBtn').html('Register Now');
      }
 
@@ -387,7 +387,7 @@ $(document).ready(function(){
               $('#leaveRequestBtn').html('Send Leave Request');
             },
             success: function() {
-              $('#staff_notification').html('<span class="badge badge-success">You have successfully sent a leave request.&nbsp;&nbsp;<a id="#view_all_staff"  href="#>View all Staffers</a></span>');
+              $('#staff_notification').html('<span class="badge badge-success">You have successfully sent a leave request.&nbsp;&nbsp;<a href="staffHome.html" class="text-white">Return to Dashboard</a></span>');
                 $('#leaveRequestBtn').hide();
                 $('#request_form').hide();
                 

@@ -269,6 +269,29 @@
 			        		method: 'DELETE',
 			        		url: `http://localhost:3000/leave_requests/${id}`,
 			        		data: {
+			        		},
+			        	    success:function(del_response){
+                               
+                               		//alert('success');
+                               		 $('#staff_notificationn').html('<span class="badge badge-danger">Deletion  of your leave request was successful &nbsp;&nbsp;<a href="staffHome.html" class="text-white">Return to Dashboard</a></span>');
+     
+                              
+                            }
+
+			        	});
+			}
+
+
+			function updateRequest(id){
+					start_date_update = $('#start_date_update').val();
+					end_date_update = $('#end_date_update').val();
+					leave_purpose_update = $('#leave_purpose_update').val();
+					leave_detail_update = $('#leave_detail_update').val();
+			        	
+				$.ajax({
+			        		method: 'PATCH',
+			        		url: `http://localhost:3000/leave_requests/${id}`,
+			        		data: {
 			        			start_date: start_date_update,
 			        			end_date: end_date_update,
 			        			leave_purpose: leave_purpose_update,
@@ -284,6 +307,7 @@
 
 			        	});
 			}
+			     
 			     
 	
 
