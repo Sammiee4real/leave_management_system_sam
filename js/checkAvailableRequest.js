@@ -1,4 +1,4 @@
- $(document).ready(function(){
+ //$(document).ready(function(){
  //gets the user's detaills immediatelt jquery loads
       let  email = window.localStorage.getItem('staffLoginEmail');
      let  staffFirstName = window.localStorage.getItem('staffFirstName');
@@ -7,7 +7,8 @@
 
      
 
-     $('#staff_info2').html('<strong>Welcome '+ staffFirstName+' '+staffLastName+' ( '+staffPhoneno+' )');
+     
+ //$('#staff_info').html('<strong>Welcome '+ staffFirstName+' '+staffLastName+' ( '+staffPhoneno+' )');
 
 
       ///chcking if the staff's leave status is positive or negative
@@ -30,7 +31,8 @@
                 $('#leave_request_div').hide();
                $('#leaveRequestBtn').hide();
                $('#leave_status_div').show();
-               $('#display').html('<small>Status is approved</small>');
+                $('#staff_info2').html('<strong>Hello, '+ staffFirstName+' '+staffLastName+' ( '+staffPhoneno+' )');
+               $('#display').html('<small>Your request has been <span style="color:green;"><strong>Approved</strong></span></small>');
                $('#update_leave_request').hide();
                $('#delete_leave_request').hide();
            }else if(response[0].approval_status == 2){
@@ -38,7 +40,9 @@
                $('#leave_request_div').hide();
                $('#leaveRequestBtn').hide();
                $('#leave_status_div').show();
-               $('#display').html('<small>Status is disapproved</small>');
+                $('#staff_info2').html('<strong>Hello, '+ staffFirstName+' '+staffLastName+' ( '+staffPhoneno+' )');
+                  $('#display').html('<small>Sorry Dear, Your request was <span style="color:danger;"><strong>Disapproved</strong></span></small>');
+
                 $('#update_leave_request').hide();
                $('#delete_leave_request').hide();
 
@@ -47,8 +51,9 @@
                $('#leave_request_div').hide();
                $('#leaveRequestBtn').hide();
                $('#leave_status_div').show();
-               $('#display').html('<small>Your request status is <strong>Pending</strong></small>');
-                $('#update_leave_request').show();
+              $('#staff_info2').html('<strong>Hello, '+ staffFirstName+' '+staffLastName+' ( '+staffPhoneno+' )');
+              $('#display').html('<small>Your request status is <span style="color:blue;"><strong>Pending</strong></span></small>');
+              $('#update_leave_request').show();
                $('#delete_leave_request').show();
             }
 
@@ -61,7 +66,8 @@
             $('#leave_request_div').show();
            $('#leaveRequestBtn').show();
            $('#leave_status_div').hide();
-           $('#display').html('<small>Status is Not submitted yet<small>');
+            $('#staff_info2').html('<strong>Hello, '+ staffFirstName+' '+staffLastName+' ( '+staffPhoneno+' )');
+          // $('#display').html('<small>Status is Not submitted yet<small>');
             $('#update_leave_request').hide();
                $('#delete_leave_request').hide();
          }
@@ -69,4 +75,4 @@
 
         });
 
-       });
+     //  });

@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="css/datatables.css">
 
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+			<script src="js/forms.js" type="text/javascript">    </script>
 			<script src="js/checkAvailableRequest.js" type="text/javascript"></script>
 
 		<!-- Popper JS -->
@@ -17,11 +18,11 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
       
-        <script src="js/forms.js" type="text/javascript"></script>
+        
      
 		  
 
-
+       
 		
 
 
@@ -159,9 +160,10 @@
 
 
 					   <div id="leave_status_div">
-					  	
+					  			
 								<br>
-								<div align="center"><div id="staff_info"></div>&nbsp;&nbsp;<small class="badge badge-sm badge-primary">You are logged in as a Staff</small></div>
+								<div align="center" id="staff_info2"></div>
+								<div align="center">&nbsp;&nbsp;<small class="badge badge-sm badge-primary">You are logged in as a Staff</small></div>
 
 								<h4 align="center">Your Request Has Been Sent <div id="display"></div></h4>
 								<hr>
@@ -188,12 +190,12 @@
       <script type="text/javascript">
 			//update leave request
 			 ///////approve a leave requests
-           function updateLeave(email){
-        			//alert(email);
+           function updateLeave(parsedEmail){
+        			//alert(data);
         			let output = "";
 			        	$.ajax({
 			        		method: 'GET',
-			        		url: `http://localhost:3000/leave_requests?email=${email}`,
+			        		url: `http://localhost:3000/leave_requests?email=${parsedEmail}`,
 			        		data: {
 			        			email
 			        		},
@@ -226,12 +228,12 @@
 
 
 
-           function deleteLeave(email){
+           function deleteLeave(parsedEmail){
         			//alert(email);
         			let output = "";
 			        	$.ajax({
 			        		method: 'GET',
-			        		url: `http://localhost:3000/leave_requests?email=${email}`,
+			        		url: `http://localhost:3000/leave_requests?email=${parsedEmail}`,
 			        		data: {
 			        			email
 			        		},
@@ -263,10 +265,14 @@
 
 
 
-			function deleteRequest(id){
+			function updateRequest(id){
+				const start_date_update = $('#start_date_update').val();
+				const end_date_update = $('#end_date_update').val();
+				const leave_purpose_update = $('#leave_purpose_update').val();
+				const leave_detail_update = $('#leave_detail_update').val();
 					
 				$.ajax({
-			        		method: 'DELETE',
+			        		method: 'PATCH',
 			        		url: `http://localhost:3000/leave_requests/${id}`,
 			        		data: {
 			        			start_date: start_date_update,
@@ -278,6 +284,25 @@
                                
                                		//alert('success');
                                		 $('#staff_notificationn').html('<span class="badge badge-success">Update of your leave request was successful &nbsp;&nbsp;<a href="staffHome.html" class="text-white">Return to Dashboard</a></span>');
+     
+                              
+                            }
+
+			        	});
+			}
+
+			function deleteRequest(id){
+					
+				$.ajax({
+			        		method: 'DELETE',
+			        		url: `http://localhost:3000/leave_requests/${id}`,
+			        		data: {
+			        	
+			        		},
+			        	    success:function(delete_resp){
+                               
+                               		//alert('success');
+                               		 $('#staff_notificationn').html('<span class="badge badge-danger">Your request has been deleted from the database &nbsp;&nbsp;<a href="staffHome.html" class="text-white">Return to Dashboard</a></span>');
      
                               
                             }
