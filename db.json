@@ -1,0 +1,58 @@
+{
+  "staffers": [
+    {
+      "firstname": "Samuel",
+      "lastname": "Jonah",
+      "middlename": "Kolade",
+      "email": "sams@gmail.com",
+      "phoneno": "0903847589",
+      "password": "sam123",
+      "qualification": "Higher Certificate",
+      "address": "no 5 abike ade street",
+      "maritalstatus": "Single",
+      "dob": "2019-01-09",
+      "gender": "Male",
+      "logincount": "0",
+      "id": 1
+    },
+    {
+      "firstname": "Bimbo",
+      "lastname": "Agbada",
+      "middlename": "Adesina",
+      "email": "bimbo@gmail.com",
+      "phoneno": "09033994488",
+      "password": "abc123",
+      "qualification": "National Diploma",
+      "address": "no 10 ajoke street",
+      "maritalstatus": "Married",
+      "dob": "2019-09-08",
+      "gender": "Male",
+      "logincount": "0",
+      "id": 2
+    }
+  ],
+  "admin": [
+    {
+      "id": 1,
+      "firstname": "Super",
+      "lastname": "Admin",
+      "email": "admin@gmail.com",
+      "phoneno": "08111111111",
+      "password": "admin123"
+    }
+  ],
+  "leave_requests": [
+    {
+      "email": "sams@gmail.com",
+      "staffFirstName": "Samuel",
+      "staffLastName": "Jonah",
+      "staffPhoneno": "0903847589",
+      "start_date": "2019-09-01",
+      "end_date": "2019-09-15",
+      "leave_purpose": "Paternity Leave",
+      "leave_detail": "i need to care for my kids",
+      "approval_status": "0",
+      "id": 1
+    }
+  ]
+}

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leave Management System</title>
+	  <script src="js/checkAdminSignIn.js" type="text/javascript"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+
+		<link rel="stylesheet"  rel="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	
+		<style>
+		.footer {
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		background-color: red;
+		color: white;
+		text-align: center;
+		}
+		</style>								
+
+		
+
+
+</head>
+<body id="reloadPage">
+			
+				<nav class="navbar navbar-expand-lg navbar-light  bg-dark">
+					<div class="container">
+						<a class="navbar-brand text-white" style="font-size: 25px;" href="#"><strong>Decagon Leave Management System</strong></a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+						</button>
+
+						<div class="collapse navbar-collapse " id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto text-white">
+						&nbsp;&nbsp;
+						<li class="nav-item active">
+						<a class="nav-link text-white" href="index.html">Main Page <span class="sr-only">(current)</span> |</a>
+						</li>
+
+
+						<!-- <li class="nav-item">
+						<a class="nav-link text-white register_staff" id="register_staff" href="#">Register a Staff |</a>
+						</li>  -->
+
+						<!--  <li class="nav-item">
+						<a class="nav-link text-white view_all_requests" id="view_all_requests" href="#">View Leave Requests |</a>
+						</li>  -->
+
+						<li class="nav-item">
+						<a class="nav-link text-white"  href="adminHome.html">View All Requests |</a>
+						</li>  
+				
+
+						<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Staff Operations
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item text-dark" id="register_staff" href="#">Create Staff</a>
+						<a class="dropdown-item text-dark" id="view_all_staff" href="#">View All Staff</a>
+						</div>
+						<!-- <div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Something else here</a>
+						</div> -->
+						</li> 
+
+
+							<!-- to differentiate admin from user, just add a privilege level status -->
+						<li class="nav-item">
+						<a class="btn btn-sm btn-danger admin_logout" id="adminLogoutBtn" href="#">Logout</a>
+						</li>
+						
+						<!-- <li class="nav-item">
+						<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Login</a>
+						</li> -->
+						</ul>
+						<!-- <form class="form-inline my-2 my-lg-0">
+						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						</form> -->
+						</div>
+					</div>
+				</nav>
+
+				<main>
+				
+
+				
+
+
+					 <div id="admin_register_div">
+					  	
+								<br>
+								<h4 align="center">Register a Staff</h4>
+								<hr>
+								<div class="row">
+								<div class="col-lg-2 col-md-12 col-sm-12"></div>
+								
+								<div class="col-lg-8 col-md-12 col-sm-12">
+									<div align="center" id="notification"></div>
+									<br>
+								<form>
+
+
+								<div class="row">
+								   <div class="col-md-4"><div class="form-group">
+									<input type="text" name="firstname" id="firstname" required class="form-control" placeholder="First name">
+									</div></div>
+
+									 <div class="col-md-4"><div class="form-group">
+									<input type="text" name="middlename" id="middlename" class="form-control" placeholder="Middle name" >
+									</div></div>
+
+									 <div class="col-md-4"><div class="form-group">
+									<input type="text" name="lastname" id="lastname" required class="form-control" placeholder="Last name" >
+									</div></div>
+									
+								 </div>
+
+								 <div class="row">
+								 		<div class="col-md-12">
+								 			
+											<div class="form-group">
+											<input type="text" name="address" required id="address" class="form-control" placeholder="Residential address" >
+											</div>
+								 		
+								 		</div>
+								 </div>
+
+								  <div class="row">
+								 		<div class="col-md-6">
+
+											<div class="form-group">
+											<input type="email" required name="email" id="email" class="form-control" placeholder="Email">
+											</div>
+		
+								 		</div>
+
+								 		<div class="col-md-6">
+								 			
+											<div class="form-group">
+
+											<input type="text" id="phoneno" required name="phoneno" placeholder="Phone number" class="form-control" >
+											</div>
+ 		
+								 		</div>
+								 </div>
+
+								  <div class="row">
+								 		<div class="col-md-12">
+
+												<label>Date of Birth</label>
+												<div class="form-group">
+												<input type="date" required name="dob" id="dob" class="form-control" placeholder="Date of Birth">
+												</div>
+		
+								 		</div>
+
+								 		
+								 </div>
+
+								  <div class="row">
+								 		<div class="col-md-6">
+								 			
+											<div class="form-group">
+										
+												
+												<select  class="form-control" id="gender" name="gender" required="">
+												<option value="">select gender</option>
+												<option value="Male">Male</option>
+												<option value="Female">Female</option>
+												
+												
+
+												</select>
+												</div>
+		
+								 		</div>
+
+								 		<div class="col-md-6">
+								 			
+											<div class="form-group">
+										
+												
+												<select  class="form-control" id="maritalstatus" name="maritalstatus" required="">
+													<option value="">select marital status</option>
+												<option value="Single">Single</option>
+												<option value="Married">Married</option>
+												<option value="Divorced">Divorced</option>
+												
+												
+
+												</select>
+												</div>
+ 		
+								 		</div>
+								 </div>
+
+								   <div class="row">
+								 		<div class="col-md-12">
+
+												<div class="form-group">
+
+												
+												<select  class="form-control" id="qualification" name="qualification" required="">
+												<option value="Highest Qualification">Highest Qualification</option>
+												<option value="Higher Certificate">Higher Certificate</option>
+												<option value="National Diploma">National Diploma</option>
+												<option value="Bachelor's Degree">Bachelor's Degree</option>
+												<option value="Post Graduate Degree">Post Graduate Degree</option>
+												<option value="Master's Degree">Master's Degree</option>
+												<option value="Doctoral Degree">Doctoral Degree</option>
+												<option value="Others">Others</option>
+
+												</select>
+												</div>
+		
+								 		</div>
+
+								 		
+								 </div>
+
+
+								  <div class="row">
+								 		<div class="col-md-6">
+
+											<div class="form-group">
+											<input type="password" name="password" id="password" class="form-control" placeholder="Password">
+											</div>
+		
+								 		</div>
+
+								 		<div class="col-md-6">
+								 			
+											<div class="form-group">
+
+											<input type="password" id="cpassword" name="cpassword" placeholder="Confirm password" class="form-control" >
+											</div>
+ 		
+								 		</div>
+								 </div>
+								  
+								<div class="row">
+									<div class="col-md-12">
+										<button id="registerStaffBtn" class="btn btn-md btn-success btn-block">Create Staff</button>
+									</div>
+								</div>
+								   
+
+								</div>
+
+
+								<div class="col-lg-2 col-md-12 col-sm-12"></div>
+								
+								</div>
+
+								<!-- <div class="row">
+								<div class="col-lg-4 col-md-12 col-sm-12"></div>
+								<div class="col-lg-4 col-md-12 col-sm-12"><button id="registerStaffBtn" class="btn btn-md btn-success btn-block">Register Now</button></div>
+								<div class="col-lg-4 col-md-12 col-sm-12"></div>
+								</div> -->
+
+								</form>
+
+					  </div>
+ 
+
+
+					  <div id="view_all_requests_div">
+					  			
+								<br>
+								
+								<div align="center"><div id="admin_info"></div>&nbsp;&nbsp;<!-- <div  <div id="nameofuser"></div> --><small class="badge badge-sm badge-info">You are logged in as Admin</small></div>
+								
+								 <h4 align="center">View All Leave Requests</h4>
+								 <div align="center" id="notification"></div>
+									<br>
+								<div class="row">
+								<div class="col-lg-1 col-md-12 col-sm-12"></div>
+								<div class="col-lg-10 col-md-12 col-sm-12">
+									
+										<div  id="view_requests_table">
+																		<!-- Modal -->
+
+
+
+										</div>
+
+								</div>
+								<div class="col-lg-1 col-md-12 col-sm-12"></div>
+								</div>
+
+					 </div>
+
+
+					  <div id="view_single_requests_div">
+					  			
+								<br>
+								
+							
+								
+								 <h4 align="center">View Single Leave Request</h4>
+								<div class="row">
+								<div class="col-lg-1 col-md-12 col-sm-12"></div>
+								<div class="col-lg-10 col-md-12 col-sm-12">
+										<div class="col-lg-10 col-md-12 col-sm-12" id="view_single_request_table">
+																		 
+
+
+
+										</div>
+
+								</div>
+								<div class="col-lg-1 col-md-12 col-sm-12"></div>
+								</div>
+
+					 </div> 
+
+					
+
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+					<div class="modal-content">
+					<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">View Record</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					</div>
+					<div class="modal-body">
+					...
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+					</div>
+					</div>
+					</div>
+
+
+
+					  	  <div id="view_staff_div">
+					  			
+								<br>
+								
+								
+								
+								 <h4 align="center">View All Staffers</h4>
+								<div class="row">
+								<div class="col-lg-1 col-md-12 col-sm-12"></div>
+								<div class="col-lg-10 col-md-12 col-sm-12" id="view_staff_table">
+										
+
+								</div>
+								<div class="col-lg-1 col-md-12 col-sm-12"></div>
+								</div>
+
+						
+
+					  </div>
+
+
+
+				</main>
+
+				
+	<footer style="background: black; color: white; margin-top: 300px;" class="container">
+					<p><strong>All rights reserved, 2019. Decagon LMS</strong></p>
+               </footer>
+
+
+
+<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<!-- Popper JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="js/forms.js" type="text/javascript"></script>
+      <!--   <script src="js/verify_admin_login.js" type="text/javascript"></script>
+         -->
+      
+
+        
+</body>
+
+</html>

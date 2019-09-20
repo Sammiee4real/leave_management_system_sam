@@ -1,0 +1,87 @@
+
+#register_div{
+	display: none;
+}
+
+#admin_register_div{
+	display: none;
+}
+
+#verifyLogin{
+	display: none;
+}
+
+
+#view_staff_div{
+	display: none;
+}
+
+#view_single_requests_div{
+	display: none;
+}
+
+#leave_pending_div{
+	display: none;
+}
+
+#my_request_div{
+  display: none;
+}
+
+#footermain{
+
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+
+}
+
+  /* Set black background color, white text and some padding */
+    footer {
+      background-color: green;
+      color: white;
+      padding: 15px;
+    }
+
+
+.card-flip > div {
+  backface-visibility: hidden;
+  transition: transform 300ms;
+  transition-timing-function: linear;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+}
+
+.card-front {
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+}
+
+.card-flip:hover .card-front {
+  transform: rotateY(-180deg);
+}
+  
+.card-flip:hover .card-back {
+  transform: rotateY(0deg);
+}
+
+
+
+
+
+
+
+
+
+
