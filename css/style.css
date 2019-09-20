@@ -28,6 +28,18 @@
   display: none;
 }
 
+#footermain{
+
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+
+}
+
   /* Set black background color, white text and some padding */
     footer {
       background-color: green;

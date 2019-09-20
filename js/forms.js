@@ -121,22 +121,31 @@ $(document).ready(function(){
        },
       success: function(response) {
         if (response.length) { //login was successfull
-          $('#staff_notification').html('<span class="badge badge-success">Login was Successful</span>');
+         
           let firstname = response[0].firstname;
           let lastname = response[0].lastname;
           let phoneno = response[0].phoneno;
+          let logincount = response[0].logincount;
+
+          // if(logincount == '0'){
+          //     window.location.assign('staffResetPassword.html');
+          //     localStorage.setItem('resetemail', staffLoginEmail);
+          //     localStorage.setItem('oldpassword', staffLoginPassword);
+          //     localStorage.setItem('logincount', logincount);
+          // }else{
+             $('#staff_notification').html('<span class="badge badge-success">Login was Successful</span>');
+            $('#verifyLogin').html('You are logged in');
+            localStorage.setItem('staffLoginEmail', staffLoginEmail);
+            localStorage.setItem('staffFirstName', firstname);
+            localStorage.setItem('staffLastName', lastname);
+            localStorage.setItem('staffPhoneno', phoneno);
+            $('#staffLoginBtn').html('Login');
+            //redirect to home page if the login is successfull
+            window.location.assign('staffHome.html');
+         // }
 
 
-        $('#verifyLogin').html('You are logged in');
-          localStorage.setItem('staffLoginEmail', staffLoginEmail);
-          localStorage.setItem('staffFirstName', firstname);
-          localStorage.setItem('staffLastName', lastname);
-          localStorage.setItem('staffPhoneno', phoneno);
-           $('#staffLoginBtn').html('Login');
-
-      
-          //redirect to home page if the login is successfull
-         window.location.assign('staffHome.html');
+        
 
         } else {
           //
@@ -152,6 +161,102 @@ $(document).ready(function(){
 
   });
 
+
+
+  /////reset password staffResetBtn
+    /////staff login function
+  // $('#staffResetBtn').click(function(event) {
+  //   event.preventDefault();
+  //   const resetpass = $('#resetpass').val();
+  //   const cresetpass = $('#cresetpass').val();
+  //   //Check if the user is in the database
+  //    if (!resetpass || !cresetpass) {
+  //     $('#staff_notification').html('<span class="badge badge-danger">Empty Fields found</span>');
+  //     //return;
+  //   }else if(resetpass != cresetpass){
+  //      $('#staff_notification').html('<span class="badge badge-danger">Password mismatch</span>');
+  //   }
+
+
+  //   else{
+  //   $.ajax({
+  //     method: 'GET',
+  //     url: `http://localhost:3000/staffers?email=${resetemail}&logincount=${logincount}`,
+  //     data: {
+  //       resetemail:resetemail,
+  //       logincount:logincount
+  //     },
+  //     beforeSend: function() {
+  //      $('#staffResetBtn').html('Loading...');
+  //      $('#staffResetBtn').html('Reset Password');
+
+  //      },
+  //     success: function(response) {
+  //       if (response.length) { //login was successfull
+  //           newlog = parseInt(logincount) + 1;
+
+  //         ////////////////update login count to 1
+  //         $.ajax({
+  //                 method: 'PATCH',
+  //                 url: `http://localhost:3000/staffers?email=${resetemail}`,
+  //                 data: {
+  //                  logincount: newlog,
+  //                  password: resetpass
+
+  //                 },
+  //                   success:function(update_response){
+  //                              if(!update_response.length){
+  //                               alert('correct');
+  //                                 //alert('success');
+  //                                  $('#staff_notificationn').html('<span class="badge badge-success">Password reset was successful &nbsp;&nbsp;<a href="staffHome.html" class="text-white">Return to Dashboard</a></span>');
+  //                              }
+     
+                              
+  //                           }
+
+  //               });
+
+
+
+         
+  //         let firstname = response[0].firstname;
+  //         let lastname = response[0].lastname;
+  //         let phoneno = response[0].phoneno;
+  //         let logincount = response[0].logincount;
+
+  //           $('#staff_notification').html('<span class="badge badge-success">Login was Successful</span>');
+  //           $('#verifyLogin').html('You are logged in');
+  //           localStorage.clear();
+  //           localStorage.setItem('staffLoginEmail', resetemail);
+  //           localStorage.setItem('staffFirstName', firstname);
+  //           localStorage.setItem('staffLastName', lastname);
+  //           localStorage.setItem('staffPhoneno', phoneno);
+  //           $('#staffResetBtn').html('Reset Password');
+  //           //redirect to home page if the login is successfull
+  //           window.location.assign('staffHome.html');
+          
+
+
+        
+
+  //       }
+
+  //        else {
+  //         //
+  //         $('#staff_notification').html('<span class="badge badge-danger">Email or Password Incorrect</span>');
+  //          $('#staffResetBtn').html('Reset Password');
+  //       }
+
+
+
+  //     }
+  
+  //  });
+
+  // } 
+
+
+  // });
 
 
    //Logout Function for Admin
@@ -220,11 +325,28 @@ $(document).ready(function(){
     const email = $('#email').val();
     const phoneno = $('#phoneno').val();
     const password = $('#password').val();
+    const cpassword = $('#cpassword').val();
+    const qualification = $('#qualification').val();
+    const address = $('#address').val();
+    const middlename = $('#middlename').val();
+    const maritalstatus = $('#maritalstatus').val();
+    const dob = $('#dob').val();
+    const gender = $('#gender').val();
+    const logincount = 0;
+
+    
+    
+    
     //Check if user input is empty
-    if (!firstname || !lastname || !phoneno || !password || !email) {
+    if (!firstname || !lastname || !phoneno || !password || !qualification || !address || !middlename || !gender || !maritalstatus || !dob) {
       $('#notification').html('<span class="badge badge-danger">Ensure all fields are properly filled. Thank you. </span>');
       return;
     }
+    else if(password !== cpassword){
+      $('#notification').html('<span class="badge badge-danger">Password mismatch found. </span>');
+      return;
+    }
+
      else{
     //Make get request to check if the user already exist
     $.ajax({
@@ -248,9 +370,16 @@ $(document).ready(function(){
             data: {
               firstname,
               lastname,
+              middlename,
               email,
               phoneno,
-              password
+              password,
+              qualification,
+              address,
+              maritalstatus,
+              dob,
+              gender,
+              logincount
             },
             beforeSend: function() {
               $('#registerStaffBtn').html('Loading...');
@@ -323,6 +452,7 @@ $(document).ready(function(){
               start_date,
               end_date,
               leave_purpose,
+              leave_detail,
               approval_status 
 
             },

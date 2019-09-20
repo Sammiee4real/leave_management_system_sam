@@ -1,84 +1,34 @@
 {
   "staffers": [
     {
-      "id": 1,
       "firstname": "Samuel",
-      "lastname": "Adebunmi",
-      "email": "adebsholey4real@gmail.com",
-      "phoneno": "08168509044",
-      "password": "s123456"
+      "lastname": "Jonah",
+      "middlename": "Kolade",
+      "email": "sams@gmail.com",
+      "phoneno": "0903847589",
+      "password": "sam123",
+      "qualification": "Higher Certificate",
+      "address": "no 5 abike ade street",
+      "maritalstatus": "Single",
+      "dob": "2019-01-09",
+      "gender": "Male",
+      "logincount": "0",
+      "id": 1
     },
     {
-      "id": 2,
-      "firstname": "Kola",
-      "lastname": "David",
-      "email": "koli@gmail.com",
-      "phoneno": "08168508033",
-      "password": "k123456"
-    },
-    {
-      "id": 3,
-      "firstname": "Emeka",
-      "lastname": "Ike",
-      "email": "ike@gmail.com",
-      "phoneno": "08168502033",
-      "password": "e123456"
-    },
-    {
-      "id": 4,
-      "firstname": "Abdul",
-      "lastname": "Idris",
-      "email": "idris@gmail.com",
-      "phoneno": "08185092344",
-      "password": "a123456"
-    },
-    {
-      "firstname": "Olugbenga",
-      "lastname": "Oteju",
-      "email": "oteju@gmail.com",
-      "phoneno": "8033533237",
-      "password": "oteju123",
-      "id": 5
-    },
-    {
-      "firstname": "Banda",
-      "lastname": "Johnson",
-      "email": "banda@gmail.com",
-      "phoneno": "09033889900",
-      "password": "banda1234",
-      "id": 6
-    },
-    {
-      "firstname": "James",
-      "lastname": "Adelakun",
-      "email": "james@gmail.com",
-      "phoneno": "09023892377",
-      "password": "james1234",
-      "id": 7
-    },
-    {
-      "firstname": "Samdal",
-      "lastname": "matosha",
-      "email": "samdal@gmail.com",
-      "phoneno": "08033887766",
-      "password": "samdal123",
-      "id": 8
-    },
-    {
-      "firstname": "Angel ",
-      "lastname": "Bamidele",
-      "email": "agrifo@yahoo.com",
-      "phoneno": "08033882200",
-      "password": "agrifo1234",
-      "id": 9
-    },
-    {
-      "firstname": "sdfsgsg",
-      "lastname": "sgsgg",
-      "email": "admisdfsn@gmail.com",
-      "phoneno": "0797970",
-      "password": "sdfjhslfl",
-      "id": 10
+      "firstname": "Bimbo",
+      "lastname": "Agbada",
+      "middlename": "Adesina",
+      "email": "bimbo@gmail.com",
+      "phoneno": "09033994488",
+      "password": "abc123",
+      "qualification": "National Diploma",
+      "address": "no 10 ajoke street",
+      "maritalstatus": "Married",
+      "dob": "2019-09-08",
+      "gender": "Male",
+      "logincount": "0",
+      "id": 2
     }
   ],
   "admin": [
@@ -93,27 +43,16 @@
   ],
   "leave_requests": [
     {
-      "email": "jame22s@gmail.com",
-      "staffFirstName": "james",
-      "staffLastName": "Adelakun2",
-      "staffPhoneno": "09012899222222",
+      "email": "sams@gmail.com",
+      "staffFirstName": "Samuel",
+      "staffLastName": "Jonah",
+      "staffPhoneno": "0903847589",
       "start_date": "2019-09-01",
-      "end_date": "2019-11-28",
-      "leave_purpose": "s2222doofsdf",
-      "approval_status": "1",
-      "leave_detail": "I need rest sir",
-      "id": 2
-    },
-    {
-      "email": "banda@gmail.com",
-      "staffFirstName": "Banda",
-      "staffLastName": "Johnson",
-      "staffPhoneno": "09033889900",
-      "start_date": "2019-09-04",
-      "end_date": "2019-09-08",
-      "leave_purpose": "Maternity Leave",
-      "approval_status": "1",
-      "id": 3
+      "end_date": "2019-09-15",
+      "leave_purpose": "Paternity Leave",
+      "leave_detail": "i need to care for my kids",
+      "approval_status": "0",
+      "id": 1
     }
   ]
 }

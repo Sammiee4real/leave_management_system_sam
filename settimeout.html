@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+ <title>Decagon Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Bitter|Nunito&display=swap" rel="stylesheet">
+  <link href="css/style2.css" rel="stylesheet">
+  <style>
+
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <input type="number" id="time" />
+  <button id="start">Start</button>
+
+  <p id="display"></p>
+
+<script>
+  $('window').ready(()=>{
+    $('#start').on('click', function(e){
+      let time = $('#time').val();
+      let value = Number(time);
+      // count down
+      let valid = null
+      let timer = ()=>{
+      if(value <= 10){
+        clearInterval(valid);
+      $('#display').html('Julius Wins')
+      } else {
+      $('#display').html(value--)
+
+      }
+
+
+      }
+      valid = setInterval(timer, 1000)
+    })
+
+    // setTimeOut(()=>{}, 1000)
+  })
+</script>
+
+</body>
+</html>
